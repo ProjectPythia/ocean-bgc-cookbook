@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How to Cite This Cookbook &#8212; Project Pythia Cookbook Template</title>
+    <title>How to read in CESM timeseries output &#8212; Project Pythia Cookbook Template</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to read in CESM timeseries output" href="readintutorial.html" />
-    <link rel="prev" title="Ocean Biogeochemistry Cookbook" href="../README.html" />
+    <link rel="next" title="Quick look at a variable" href="ocn-tracer-views.html" />
+    <link rel="prev" title="How to Cite This Cookbook" href="how-to-cite.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -191,9 +191,9 @@ const thebe_selector_output = ".output, .cell_output"
   Preamble
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-cite.html">
    How to Cite This Cookbook
   </a>
  </li>
@@ -203,9 +203,9 @@ const thebe_selector_output = ".output, .cell_output"
   Data Access
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="readintutorial.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    How to read in CESM timeseries output
   </a>
  </li>
@@ -307,9 +307,9 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/notebooks/how-to-cite.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/notebooks/readintutorial.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -327,10 +327,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/ProjectPythia/cookbook-template//issues/new?title=Issue%20on%20page%20%2Fnotebooks/how-to-cite.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/ProjectPythia/cookbook-template//issues/new?title=Issue%20on%20page%20%2Fnotebooks/readintutorial.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ProjectPythia/cookbook-template/edit/main/notebooks/how-to-cite.md"><button
+        <a class="edit-button" href="https://github.com/ProjectPythia/cookbook-template/edit/main/notebooks/readintutorial.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -345,11 +345,46 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-template/main?urlpath=lab/tree/notebooks/readintutorial.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> On this page
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specifying-data-location">
+   Specifying data location
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-our-data-into-xarray">
+   Loading our data into xarray
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -358,11 +393,86 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
               
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-cite-this-cookbook">
-<h1>How to Cite This Cookbook<a class="headerlink" href="#how-to-cite-this-cookbook" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
-<p>The material in this Project Pythia Cookbook is licensed for free and open consumption and reuse. All code is served under <a class="reference external" href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>, while all non-code content is licensed under <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 (CC BY 4.0)</a>. Effectively, this means you are free to share and adapt this material so long as you give appropriate credit to the Cookbook authors and the Project Pythia community.</p>
-<p>The source code for the book is <a class="reference external" href="https://github.com/ProjectPythia/cookbook-template">released on GitHub</a> and archived on Zenodo. This DOI will always resolve to the latest release of the book source:</p>
-<p><a class="reference external" href="https://zenodo.org/badge/latestdoi/475509405"><img alt="DOI" src="https://zenodo.org/badge/475509405.svg" /></a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-read-in-cesm-timeseries-output">
+<h1>How to read in CESM timeseries output<a class="headerlink" href="#how-to-read-in-cesm-timeseries-output" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<p>This is just one way that a CESM output dataset can look - some are in the form of history files instead (elaborate further).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="specifying-data-location">
+<h2>Specifying data location<a class="headerlink" href="#specifying-data-location" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span> <span class="o">=</span> <span class="s1">&#39;g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/glade/campaign/cesm/development/bgcwg/projects/CESM2-OMIP2-like-4p2z-run/&#39;</span><span class="o">+</span><span class="n">case</span><span class="o">+</span><span class="s1">&#39;/ocn/proc/tseries/month_1&#39;</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;TLONG&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;TLAT&#39;</span><span class="p">}</span>
+<span class="n">path</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/glade/campaign/cesm/development/bgcwg/projects/CESM2-OMIP2-like-4p2z-run/g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch/ocn/proc/tseries/month_1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-our-data-into-xarray">
+<h2>Loading our data into xarray<a class="headerlink" href="#loading-our-data-into-xarray" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>We use xarray’s <code class="docutils literal notranslate"><span class="pre">open_mfdataset()</span></code> function to load the files making up this run of CESM into an xarray Dataset, dropping a few variables whose coordinates don’t fit nicely. (Elaborate some more on the kwarg choices; I’m not really sure why these ones work)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s1">.pop.h.*.195801-202112.nc&#39;</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">drop_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transport_components&quot;</span><span class="p">,</span> <span class="s2">&quot;transport_regions&quot;</span><span class="p">,</span> <span class="s1">&#39;moc_components&#39;</span><span class="p">],</span> <span class="n">decode_times</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s1">.pop.h.*.195801-202112.nc&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ds</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                        <span class="n">drop_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transport_components&quot;</span><span class="p">,</span> <span class="s2">&quot;transport_regions&quot;</span><span class="p">,</span> <span class="s1">&#39;moc_components&#39;</span><span class="p">],</span> <span class="n">decode_times</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.11/site-packages/xarray/backends/api.py:990,</span> in <span class="ni">open_mfdataset</span><span class="nt">(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">987</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">_find_absolute_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">989</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">990</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;no files to open&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span> <span class="k">if</span> <span class="n">combine</span> <span class="o">==</span> <span class="s2">&quot;nested&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataArray</span><span class="p">))</span> <span class="ow">or</span> <span class="n">concat_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="ne">OSError</span>: no files to open
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds</span>
+
+<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks good!</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -388,17 +498,17 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
               </div>
               <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../README.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="how-to-cite.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Ocean Biogeochemistry Cookbook</p>
+            <p class="prev-next-title">How to Cite This Cookbook</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="readintutorial.html" title="next page">
+    <a class='right-next' id="next-link" href="ocn-tracer-views.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">How to read in CESM timeseries output</p>
+        <p class="prev-next-title">Quick look at a variable</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
