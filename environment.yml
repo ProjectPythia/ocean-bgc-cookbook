@@ -1,4 +1,4 @@
-name: ocean-bgc-cookbook-dev
+name: cookbook-dev
 channels:
   - conda-forge
 dependencies:
