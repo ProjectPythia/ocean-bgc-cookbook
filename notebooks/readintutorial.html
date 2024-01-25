@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How to read in CESM timeseries output &#8212; Project Pythia Cookbook Template</title>
+    <title>How to read in CESM time-series output &#8212; Project Pythia Cookbook Template</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Quick look at a variable" href="ocn-tracer-views.html" />
+    <link rel="next" title="Plotting a simple variable" href="ocn-tracer-views.html" />
     <link rel="prev" title="How to Cite This Cookbook" href="how-to-cite.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -206,7 +206,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   How to read in CESM timeseries output
+   How to read in CESM time-series output
   </a>
  </li>
 </ul>
@@ -218,7 +218,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="ocn-tracer-views.html">
-   Quick look at a variable
+   Plotting a simple variable
   </a>
  </li>
 </ul>
@@ -393,9 +393,9 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
               
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-read-in-cesm-timeseries-output">
-<h1>How to read in CESM timeseries output<a class="headerlink" href="#how-to-read-in-cesm-timeseries-output" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
-<p>This is just one way that a CESM output dataset can look - some are in the form of history files instead (elaborate further).</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-read-in-cesm-time-series-output">
+<h1>How to read in CESM time-series output<a class="headerlink" href="#how-to-read-in-cesm-time-series-output" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<p>Output from one run of CESM is the main dataset that we’ll be looking at in this cookbook. Let’s learn how to read it in. And note that this is just one way that CESM output can look. This run has been post-processed, so the data are in the form of “time-series” files, where each file stores one variable across the full timespan of the run. Before this processing, CESM actually outputs data in the form of “history” files instead, where each file contains all variables over a shorter time-slice. We won’t dive into the specifics of CESM data processing here, but this <a class="reference external" href="https://ncar.github.io/CESM-Tutorial/notebooks/diagnostics/additional/postprocessing.html">Jupyter book</a> from the CESM tutorial has some more info!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -411,13 +411,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span> <span class="o">=</span> <span class="s1">&#39;g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch&#39;</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/glade/campaign/cesm/development/bgcwg/projects/CESM2-OMIP2-like-4p2z-run/&#39;</span><span class="o">+</span><span class="n">case</span><span class="o">+</span><span class="s1">&#39;/ocn/proc/tseries/month_1&#39;</span>
-<span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;TLONG&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;TLAT&#39;</span><span class="p">}</span>
 <span class="n">path</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/glade/campaign/cesm/development/bgcwg/projects/CESM2-OMIP2-like-4p2z-run/g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch/ocn/proc/tseries/month_1&#39;
 </pre></div>
 </div>
 </div>
@@ -425,7 +419,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="section" id="loading-our-data-into-xarray">
 <h2>Loading our data into xarray<a class="headerlink" href="#loading-our-data-into-xarray" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>We use xarray’s <code class="docutils literal notranslate"><span class="pre">open_mfdataset()</span></code> function to load the files making up this run of CESM into an xarray Dataset, dropping a few variables whose coordinates don’t fit nicely. (Elaborate some more on the kwarg choices; I’m not really sure why these ones work)</p>
+<p>We use xarray’s <code class="docutils literal notranslate"><span class="pre">open_mfdataset()</span></code> function to load the files output by this run of CESM into an xarray Dataset, dropping a few variables whose coordinates don’t fit nicely. (Elaborate some more on the kwarg choices; I’m not really sure why these ones work)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s1">.pop.h.*.195801-202112.nc&#39;</span><span class="p">)</span>
@@ -434,39 +428,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">case</span><span class="si">}</span><span class="s1">.pop.h.*.195801-202112.nc&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ds</span><span class="o">=</span><span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="n">data_vars</span><span class="o">=</span><span class="s2">&quot;minimal&quot;</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="s1">&#39;minimal&#39;</span><span class="p">,</span> <span class="n">compat</span><span class="o">=</span><span class="s2">&quot;override&quot;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                        <span class="n">drop_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transport_components&quot;</span><span class="p">,</span> <span class="s2">&quot;transport_regions&quot;</span><span class="p">,</span> <span class="s1">&#39;moc_components&#39;</span><span class="p">],</span> <span class="n">decode_times</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.11/site-packages/xarray/backends/api.py:990,</span> in <span class="ni">open_mfdataset</span><span class="nt">(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">987</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">_find_absolute_paths</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">989</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">990</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">&quot;no files to open&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">992</span> <span class="k">if</span> <span class="n">combine</span> <span class="o">==</span> <span class="s2">&quot;nested&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">993</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">concat_dim</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataArray</span><span class="p">))</span> <span class="ow">or</span> <span class="n">concat_dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">OSError</span>: no files to open
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -484,16 +449,16 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "conda-env-miniconda3-ocean-bgc-cookbook-dev-py"
         },
         kernelOptions: {
-            name: "python3",
+            name: "conda-env-miniconda3-ocean-bgc-cookbook-dev-py",
             path: "./notebooks"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'conda-env-miniconda3-ocean-bgc-cookbook-dev-py'</script>
 
               </div>
               <!-- Previous / next buttons -->
@@ -508,7 +473,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     <a class='right-next' id="next-link" href="ocn-tracer-views.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Quick look at a variable</p>
+        <p class="prev-next-title">Plotting a simple variable</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -557,7 +522,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 19 January 2024.
+          Last updated on 25 January 2024.
         </p>
       </div>
     </div>

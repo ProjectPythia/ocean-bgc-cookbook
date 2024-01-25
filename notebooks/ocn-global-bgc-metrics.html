@@ -204,7 +204,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="readintutorial.html">
-   How to read in CESM timeseries output
+   How to read in CESM time-series output
   </a>
  </li>
 </ul>
@@ -216,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="ocn-tracer-views.html">
-   Quick look at a variable
+   Plotting a simple variable
   </a>
  </li>
 </ul>
@@ -343,23 +343,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-template/main?urlpath=lab/tree/notebooks/ocn-global-bgc-metrics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
@@ -447,15 +430,15 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h1>Global BGC metrics<a class="headerlink" href="#global-bgc-metrics" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 
 <span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
 
@@ -476,7 +459,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_grid</span> <span class="o">=</span> <span class="n">pop_tools</span><span class="o">.</span><span class="n">get_grid</span><span class="p">(</span><span class="s1">&#39;POP_gx1v7&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds_grid</span> <span class="o">=</span> <span class="n">pop_tools</span><span class="o">.</span><span class="n">get_grid</span><span class="p">(</span><span class="s1">&#39;POP_gx1v7&#39;</span><span class="p">)</span>
 <span class="n">lons</span><span class="o">=</span><span class="n">ds_grid</span><span class="o">.</span><span class="n">TLONG</span>
 <span class="n">lats</span><span class="o">=</span><span class="n">ds_grid</span><span class="o">.</span><span class="n">TLAT</span>
 <span class="n">area</span> <span class="o">=</span> <span class="n">ds_grid</span><span class="o">.</span><span class="n">TAREA</span>
@@ -487,9 +470,9 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="section" id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<div class="cell tag_parameters docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">casename</span> <span class="o">=</span> <span class="s1">&#39;g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.001&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">casename</span> <span class="o">=</span> <span class="s1">&#39;g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.001&#39;</span>
 <span class="n">component</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span>
 <span class="n">stream</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span>
 
@@ -500,7 +483,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">component</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">component</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
 <span class="k">assert</span> <span class="n">stream</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">]</span> <span class="c1">#, &#39;h.ecosys.nday1&#39;]</span>
 </pre></div>
 </div>
@@ -511,107 +494,12 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Connect to cluster<a class="headerlink" href="#connect-to-cluster" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">cluster_scheduler_address</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">cluster_scheduler_address</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">cluster</span><span class="p">,</span> <span class="n">client</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_ClusterClient</span><span class="p">()</span>
     <span class="n">cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster_scheduler_address</span><span class="p">)</span>
 <span class="n">client</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">PermissionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">if</span> <span class="n">cluster_scheduler_address</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">cluster</span><span class="p">,</span> <span class="n">client</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_ClusterClient</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File ~/work/ocean-bgc-cookbook/ocean-bgc-cookbook/notebooks/util.py:25,</span> in <span class="ni">get_ClusterClient</span><span class="nt">(memory, project, on_hub)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="k">def</span> <span class="nf">get_ClusterClient</span><span class="p">(</span><span class="n">memory</span><span class="o">=</span><span class="s2">&quot;25GB&quot;</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="s2">&quot;NCGD0011&quot;</span><span class="p">,</span> <span class="n">on_hub</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">cluster</span> <span class="o">=</span> <span class="n">get_Cluster</span><span class="p">(</span><span class="n">memory</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">on_hub</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="k">return</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">client</span>
-
-<span class="nn">File ~/work/ocean-bgc-cookbook/ocean-bgc-cookbook/notebooks/util.py:34,</span> in <span class="ni">get_Cluster</span><span class="nt">(memory, project, on_hub)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;return client and cluster&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">USER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;USER&quot;</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">34</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">PBSCluster</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">memory</span><span class="o">=</span><span class="n">memory</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">processes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;casper&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="n">local_directory</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;/glade/scratch/</span><span class="si">{</span><span class="n">USER</span><span class="si">}</span><span class="s2">/dask-workers&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="n">log_directory</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;/glade/scratch/</span><span class="si">{</span><span class="n">USER</span><span class="si">}</span><span class="s2">/dask-workers&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="n">resource_spec</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;select=1:ncpus=1:mem=</span><span class="si">{</span><span class="n">memory</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="n">project</span><span class="o">=</span><span class="n">project</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span>     <span class="n">walltime</span><span class="o">=</span><span class="s2">&quot;06:00:00&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="k">if</span> <span class="n">on_hub</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="n">jupyterhub_server_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JUPYTERHUB_SERVER_NAME&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py:636,</span> in <span class="ni">JobQueueCluster.__init__</span><span class="nt">(self, n_workers, job_cls, loop, security, shared_temp_directory, silence_logs, name, asynchronous, dashboard_address, host, scheduler_options, scheduler_cls, interface, protocol, config_name, **job_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="k">if</span> <span class="s2">&quot;processes&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_job_kwargs</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_job_kwargs</span><span class="p">[</span><span class="s2">&quot;processes&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">worker</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-<span class="nn">    633         &quot;-&quot; + str(i) for i</span> in <span class="ni">range</span><span class="nt">(self._job_kwargs[&quot;processes&quot;])</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span>     <span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">636</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dummy_job</span>  <span class="c1"># trigger property to ensure that the job is valid</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span>     <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">640</span>     <span class="n">worker</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">645</span>     <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">646</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">648</span> <span class="k">if</span> <span class="n">n_workers</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py:665,</span> in <span class="ni">JobQueueCluster._dummy_job</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">663</span>     <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;tcp://&lt;insert-scheduler-address-here&gt;:8786&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">664</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">665</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_cls</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>         <span class="n">address</span> <span class="ow">or</span> <span class="s2">&quot;tcp://&lt;insert-scheduler-address-here&gt;:8786&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span>         <span class="c1"># The &#39;name&#39; parameter is replaced inside Job class by the</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span>         <span class="c1"># actual Dask worker name. Using &#39;dummy-name here&#39; to make it</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span>         <span class="c1"># more clear that cluster.job_script() is similar to but not</span>
-<span class="g g-Whitespace">    </span><span class="mi">670</span>         <span class="c1"># exactly the same script as the script submitted for each Dask</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span>         <span class="c1"># worker</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span>         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dummy-name&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_job_kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="c1"># Very likely this error happened in the self.job_cls constructor</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span>     <span class="c1"># because an unexpected parameter was used in the JobQueueCluster</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="c1"># constructor. The next few lines builds a more user-friendly error message.</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span>     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;(unexpected keyword argument.+)&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
-
-<span class="nn">File ~/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/pbs.py:55,</span> in <span class="ni">PBSJob.__init__</span><span class="nt">(self, scheduler, name, queue, project, account, resource_spec, walltime, config_name, **base_class_kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span>     <span class="n">scheduler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="o">**</span><span class="n">base_class_kwargs</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">55</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="n">config_name</span><span class="p">,</span> <span class="o">**</span><span class="n">base_class_kwargs</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="k">if</span> <span class="n">queue</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>         <span class="n">queue</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;jobqueue.</span><span class="si">%s</span><span class="s2">.queue&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_name</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py:359,</span> in <span class="ni">Job.__init__</span><span class="nt">(self, scheduler, name, cores, memory, processes, nanny, protocol, security, interface, death_timeout, local_directory, extra, worker_extra_args, job_extra, job_extra_directives, env_extra, job_script_prologue, header_skip, job_directives_skip, log_directory, shebang, python, job_name, config_name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">357</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_directory</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">358</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_directory</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">359</span>         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_directory</span><span class="p">)</span>
-
-<span class="nn">File &lt;frozen os&gt;:215,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
-
-<span class="nn">File &lt;frozen os&gt;:215,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
-
-<span class="nn">File &lt;frozen os&gt;:215,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
-
-<span class="nn">File &lt;frozen os&gt;:225,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
-
-<span class="ne">PermissionError</span>: [Errno 13] Permission denied: &#39;/glade&#39;
 </pre></div>
 </div>
 </div>
@@ -621,7 +509,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 
 <span class="n">dsets</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">to_dataset_dict</span><span class="p">(</span>
     <span class="n">case</span><span class="o">=</span><span class="n">casename</span><span class="p">,</span>
@@ -632,36 +520,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">File</span> <span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span>
-
-<span class="nn">File ~/work/ocean-bgc-cookbook/ocean-bgc-cookbook/notebooks/catalog.py:59,</span> in <span class="ni">to_dataset_dict</span><span class="nt">(case, component, stream, archive_root, cdf_kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="k">if</span> <span class="n">archive_root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">archive_root</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;/glade/scratch/kristenk/archive&#39;</span>
-<span class="ne">---&gt; </span><span class="mi">59</span> <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archive_root</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="n">case</span> <span class="o">=</span> <span class="p">[</span><span class="n">case</span><span class="p">]</span>
-
-<span class="ne">AssertionError</span>: 
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">dsets</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">casename</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">stream</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">dsets</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">casename</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">stream</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
-
-<span class="ne">NameError</span>: name &#39;dsets&#39; is not defined
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">dsets</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">casename</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">stream</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -671,7 +533,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Variable list<a class="headerlink" href="#variable-list" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">,</span>
             <span class="s1">&#39;photoC_sp_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_diat_zint&#39;</span><span class="p">,</span>
             <span class="s1">&#39;photoC_diaz_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_cocco_zint&#39;</span><span class="p">,</span>
             <span class="s1">&#39;SiO2_PROD&#39;</span><span class="p">,</span><span class="s1">&#39;CaCO3_PROD_zint&#39;</span><span class="p">,</span><span class="s1">&#39;diaz_Nfix&#39;</span><span class="p">,</span>
@@ -683,57 +545,24 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keep_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;z_t&#39;</span><span class="p">,</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">,</span><span class="s1">&#39;dz&#39;</span><span class="p">,</span><span class="s1">&#39;time_bound&#39;</span><span class="p">,</span><span class="s1">&#39;TAREA&#39;</span><span class="p">,</span><span class="s1">&#39;TLAT&#39;</span><span class="p">,</span><span class="s1">&#39;TLONG&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">variables</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">keep_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;z_t&#39;</span><span class="p">,</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">,</span><span class="s1">&#39;dz&#39;</span><span class="p">,</span><span class="s1">&#39;time_bound&#39;</span><span class="p">,</span><span class="s1">&#39;TAREA&#39;</span><span class="p">,</span><span class="s1">&#39;TLAT&#39;</span><span class="p">,</span><span class="s1">&#39;TLONG&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">variables</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keep_vars</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">keep_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;z_t&#39;</span><span class="p">,</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">,</span><span class="s1">&#39;dz&#39;</span><span class="p">,</span><span class="s1">&#39;time_bound&#39;</span><span class="p">,</span><span class="s1">&#39;TAREA&#39;</span><span class="p">,</span><span class="s1">&#39;TLAT&#39;</span><span class="p">,</span><span class="s1">&#39;TLONG&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">variables</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keep_vars</span><span class="p">])</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_wgt</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">time_bound</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="s1">&#39;d2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dt_wgt</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">time_bound</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="s1">&#39;d2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
 <span class="n">dt_wgt</span> <span class="o">/=</span> <span class="n">dt_wgt</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="c1">#dt_wgt</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dt_wgt</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">time_bound</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="s1">&#39;d2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">dt_wgt</span> <span class="o">/=</span> <span class="n">dt_wgt</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1">#dt_wgt</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">dt_wgt</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">dt_wgt</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">weighted</span><span class="p">(</span><span class="n">dt_wgt</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -745,7 +574,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h3>Carbon-related variables<a class="headerlink" href="#carbon-related-variables" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cvars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">,</span> <span class="s1">&#39;photoC_sp_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_diat_zint&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cvars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">,</span> <span class="s1">&#39;photoC_sp_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_diat_zint&#39;</span><span class="p">,</span>
          <span class="s1">&#39;photoC_diaz_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_cocco_zint&#39;</span><span class="p">,</span> <span class="s1">&#39;POC_FLUX_100m&#39;</span><span class="p">,</span>
          <span class="s1">&#39;CaCO3_PROD_zint&#39;</span><span class="p">,</span><span class="s1">&#39;x_graze_microzoo_zint&#39;</span><span class="p">,</span><span class="s1">&#39;x_graze_mesozoo_zint&#39;</span><span class="p">]</span>
 
@@ -759,40 +588,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">cvars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">,</span> <span class="s1">&#39;photoC_sp_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_diat_zint&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>          <span class="s1">&#39;photoC_diaz_zint&#39;</span><span class="p">,</span><span class="s1">&#39;photoC_cocco_zint&#39;</span><span class="p">,</span> <span class="s1">&#39;POC_FLUX_100m&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>          <span class="s1">&#39;CaCO3_PROD_zint&#39;</span><span class="p">,</span><span class="s1">&#39;x_graze_microzoo_zint&#39;</span><span class="p">,</span><span class="s1">&#39;x_graze_mesozoo_zint&#39;</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">ds_glb</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">global_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds_grid</span><span class="p">,</span> <span class="n">cvars</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">nmols_to_PgCyr</span> <span class="o">=</span> <span class="mf">1e-9</span> <span class="o">*</span> <span class="mf">12.</span> <span class="o">*</span> <span class="mf">1e-15</span> <span class="o">*</span> <span class="mf">365.</span> <span class="o">*</span> <span class="mf">86400.</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">cvars</span><span class="p">:</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="percent-npp-by-diatoms">
 <h3>Percent NPP by diatoms<a class="headerlink" href="#percent-npp-by-diatoms" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diatNPPpercent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_diat_zint</span> <span class="o">/</span> <span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span> <span class="o">*</span> <span class="mf">100.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diatNPPpercent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_diat_zint</span> <span class="o">/</span> <span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span> <span class="o">*</span> <span class="mf">100.</span>
 <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diatNPPpercent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diatNPPpercent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_diat_zint</span> <span class="o">/</span> <span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span> <span class="o">*</span> <span class="mf">100.</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diatNPPpercent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>
-
-<span class="ne">NameError</span>: name &#39;ds_glb&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -802,7 +605,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h3>Diatom silicification<a class="headerlink" href="#diatom-silicification" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">SiO2_PROD</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">z_t</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t&#39;</span><span class="p">)</span> <span class="c1">## depth integral, units in mmol/m2/s</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">SiO2_PROD</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">z_t</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t&#39;</span><span class="p">)</span> <span class="c1">## depth integral, units in mmol/m2/s</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="n">area_m</span> <span class="c1">## mmol/s</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="mf">86400.</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">*</span> <span class="mf">0.001</span> <span class="c1">## mol/yr </span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;nlon&#39;</span><span class="p">,</span><span class="s1">&#39;nlat&#39;</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.e-12</span> <span class="c1">#Tmol/yr</span>
@@ -812,42 +615,18 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">SiO2_PROD</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">z_t</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t&#39;</span><span class="p">)</span> <span class="c1">## depth integral, units in mmol/m2/s</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="n">area_m</span> <span class="c1">## mmol/s</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="mf">86400.</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">*</span> <span class="mf">0.001</span> <span class="c1">## mol/yr </span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="nitrogen-fixation">
 <h3>Nitrogen fixation<a class="headerlink" href="#nitrogen-fixation" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;diaz_Nfix&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">)</span> <span class="c1"># unit is mmol/m2/s</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;diaz_Nfix&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">)</span> <span class="c1"># unit is mmol/m2/s</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="n">area_m</span> <span class="c1">## mmol/s</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="mf">86400.</span> <span class="o">*</span> <span class="mf">365.</span> <span class="o">*</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="mf">14.</span> <span class="o">*</span> <span class="mf">1e-12</span> <span class="c1">#convert to Tg N / yr</span>
 
 <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diaz_Nfix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;nlon&#39;</span><span class="p">,</span><span class="s1">&#39;nlat&#39;</span><span class="p">))</span>
 <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;diaz_Nfix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Tg N yr$^{-1}$&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;diaz_Nfix&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">)</span> <span class="c1"># unit is mmol/m2/s</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="n">area_m</span> <span class="c1">## mmol/s</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">*</span> <span class="mf">86400.</span> <span class="o">*</span> <span class="mf">365.</span> <span class="o">*</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="mf">14.</span> <span class="o">*</span> <span class="mf">1e-12</span> <span class="c1">#convert to Tg N / yr</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -857,7 +636,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h3>Zooplankton biomass<a class="headerlink" href="#zooplankton-biomass" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">microzooC</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">)</span> <span class="c1">#mmol/m2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">microzooC</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">)</span> <span class="c1">#mmol/m2</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">*</span> <span class="n">area_m</span> <span class="o">*</span> <span class="mf">0.001</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;nlon&#39;</span><span class="p">,</span><span class="s1">&#39;nlat&#39;</span><span class="p">))</span> <span class="c1">## mol</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="mf">1.e-15</span> <span class="o">*</span> <span class="mf">12.011</span> <span class="c1">#Pg C</span>
 <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;microzooC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
@@ -871,37 +650,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">microzooC</span> <span class="o">*</span> <span class="mf">10.</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;z_t_150m&#39;</span><span class="p">)</span> <span class="c1">#mmol/m2</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">*</span> <span class="n">area_m</span> <span class="o">*</span> <span class="mf">0.001</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;nlon&#39;</span><span class="p">,</span><span class="s1">&#39;nlat&#39;</span><span class="p">))</span> <span class="c1">## mol</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="mf">1.e-15</span> <span class="o">*</span> <span class="mf">12.011</span> <span class="c1">#Pg C</span>
-
-<span class="ne">NameError</span>: name &#39;ds&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="zooplankton-productivity-as-npp">
 <h3>Zooplankton productivity as % NPP<a class="headerlink" href="#zooplankton-productivity-as-npp" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;zooprodNPPpercent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;x_graze_mesozoo_zint&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;x_graze_microzoo_zint&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">100.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;zooprodNPPpercent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;x_graze_mesozoo_zint&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;x_graze_microzoo_zint&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">100.</span>
 <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;zooprodNPPpercent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;zooprodNPPpercent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;x_graze_mesozoo_zint&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;x_graze_microzoo_zint&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;photoC_TOT_zint&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">100.</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ds_glb</span><span class="p">[</span><span class="s1">&#39;zooprodNPPpercent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>
-
-<span class="ne">NameError</span>: name &#39;ds_glb&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -912,14 +668,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Make a table of global metrics<a class="headerlink" href="#make-a-table-of-global-metrics" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Metric&#39;</span><span class="p">,</span><span class="s1">&#39;unit&#39;</span><span class="p">,</span><span class="s1">&#39;CESM&#39;</span><span class="p">,</span><span class="s1">&#39;Obs&#39;</span><span class="p">,</span><span class="s1">&#39;Reference&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Metric&#39;</span><span class="p">,</span><span class="s1">&#39;unit&#39;</span><span class="p">,</span><span class="s1">&#39;CESM&#39;</span><span class="p">,</span><span class="s1">&#39;Obs&#39;</span><span class="p">,</span><span class="s1">&#39;Reference&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NPP&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;45 to 55&#39;</span><span class="p">,</span><span class="s1">&#39;Behrenfeld &amp; Falkowski 1997; Carr et al., 2006&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NPP&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;45 to 55&#39;</span><span class="p">,</span><span class="s1">&#39;Behrenfeld &amp; Falkowski 1997; Carr et al., 2006&#39;</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;POC export 100m&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">POC_FLUX_100m</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">POC_FLUX_100m</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;4 to 12&#39;</span><span class="p">,</span><span class="s1">&#39;DeVries &amp; Weber, 2017&#39;</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;%NPP by diatoms&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">diatNPPpercent</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">diatNPPpercent</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;40%&#39;</span><span class="p">,</span><span class="s1">&#39;Nelson et al., 1995&#39;</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Silicification&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">SiO2_PROD</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">SiO2_PROD</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;100 to 190&#39;</span><span class="p">,</span><span class="s1">&#39;Nelson et al., 1995; Holzer et al., 2014&#39;</span><span class="p">]</span>
@@ -930,55 +686,13 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NPP&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">photoC_TOT_zint</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;45 to 55&#39;</span><span class="p">,</span><span class="s1">&#39;Behrenfeld &amp; Falkowski 1997; Carr et al., 2006&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;POC export 100m&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">POC_FLUX_100m</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">POC_FLUX_100m</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;4 to 12&#39;</span><span class="p">,</span><span class="s1">&#39;DeVries &amp; Weber, 2017&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;%NPP by diatoms&#39;</span><span class="p">,</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">diatNPPpercent</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ds_glb</span><span class="o">.</span><span class="n">diatNPPpercent</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="s1">&#39;40%&#39;</span><span class="p">,</span><span class="s1">&#39;Nelson et al., 1995&#39;</span><span class="p">]</span>
-
-<span class="ne">NameError</span>: name &#39;ds_glb&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Metric</th>
-      <th>unit</th>
-      <th>CESM</th>
-      <th>Obs</th>
-      <th>Reference</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </div>
 </div>
@@ -1051,7 +765,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 19 January 2024.
+          Last updated on 25 January 2024.
         </p>
       </div>
     </div>
