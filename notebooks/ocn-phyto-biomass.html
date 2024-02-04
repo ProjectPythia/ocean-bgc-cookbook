@@ -228,7 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ocn-carbonfluxes.html">
-   Carbon fluxes
+   Ocean carbon fluxes
   </a>
  </li>
  <li class="toctree-l1">
@@ -362,6 +362,21 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-setup-see-intro-notebooks-for-explanations">
    General setup (see intro notebooks for explanations)
   </a>
@@ -399,8 +414,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotting">
-   Plotting
+  <a class="reference internal nav-link" href="#mapping-biomass-at-different-depths">
+   Mapping biomass at different depths
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -413,17 +428,29 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
      Phytoplankton biomass at 100m
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#productivity">
-     Productivity
-    </a>
-   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mapping-productivity">
+   Mapping productivity
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#globally-integrated-npp">
      Globally integrated NPP
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources-and-references">
+   Resources and references
+  </a>
  </li>
 </ul>
 
@@ -438,6 +465,45 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="phytoplankton-biomass">
 <h1>Phytoplankton biomass<a class="headerlink" href="#phytoplankton-biomass" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Evaluate different quantities related to phytoplankton biomass and productivity modeled by CESM-MARBL.</p>
+<ol class="arabic simple">
+<li><p>Gemeral setup</p></li>
+<li><p>Subsetting</p></li>
+<li><p>Taking a quick look</p></li>
+<li><p>Processing data</p></li>
+<li><p>Mapping biomass at different depths</p></li>
+<li><p>Mapping productivity</p></li>
+<li><p>Future: compare NPP to obs?</p></li>
+</ol>
+<p>TO DO: Add comparison of NPP to cloud based satellite obs, add more narrative text, clean up comments, add references</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>This needs to be updated later!</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepts</p></th>
+<th class="head"><p>Importance</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/cartopy/cartopy.html">Intro to Cartopy</a></p></td>
+<td><p>Necessary</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>Time to learn</strong>: 30 min</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -452,14 +518,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="general-setup-see-intro-notebooks-for-explanations">
 <h2>General setup (see intro notebooks for explanations)<a class="headerlink" href="#general-setup-see-intro-notebooks-for-explanations" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="section" id="connect-to-cluster">
 <h3>Connect to cluster<a class="headerlink" href="#connect-to-cluster" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">LocalCluster</span>
-<span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_client</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -58786,8 +58852,8 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 </div>
 </div>
-<div class="section" id="plotting">
-<h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="section" id="mapping-biomass-at-different-depths">
+<h2>Mapping biomass at different depths<a class="headerlink" href="#mapping-biomass-at-different-depths" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="section" id="phytoplankton-biomass-at-the-surface">
 <h3>Phytoplankton biomass at the surface<a class="headerlink" href="#phytoplankton-biomass-at-the-surface" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
@@ -58889,8 +58955,9 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 </div>
 </div>
-<div class="section" id="productivity">
-<h3>Productivity<a class="headerlink" href="#productivity" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</div>
+<div class="section" id="mapping-productivity">
+<h2>Mapping productivity<a class="headerlink" href="#mapping-productivity" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
@@ -58956,7 +59023,6 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 </div>
 <p><strong>Add comparison to a satellite NPP dataset, hopefully a cloud available one</strong></p>
-</div>
 <div class="section" id="globally-integrated-npp">
 <h3>Globally integrated NPP<a class="headerlink" href="#globally-integrated-npp" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
@@ -59419,6 +59485,15 @@ Data variables:
 </div>
 </div>
 </div>
+<hr class="docutils" />
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>You’ve learned how to take a look at a few quantities related to phytoplankton in CESM.</p>
+</div>
+<div class="section" id="resources-and-references">
+<h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Add stuff later.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -59503,7 +59578,7 @@ Data variables:
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 3 February 2024.
+          Last updated on 4 February 2024.
         </p>
       </div>
     </div>

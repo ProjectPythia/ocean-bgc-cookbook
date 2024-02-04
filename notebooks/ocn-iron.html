@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Phytoplankton biomass" href="ocn-phyto-biomass.html" />
-    <link rel="prev" title="Carbon fluxes" href="ocn-carbonfluxes.html" />
+    <link rel="prev" title="Ocean carbon fluxes" href="ocn-carbonfluxes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -228,7 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ocn-carbonfluxes.html">
-   Carbon fluxes
+   Ocean carbon fluxes
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -362,6 +362,21 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-setup-see-intro-notebooks-for-explanations">
    General setup (see intro notebooks for explanations)
   </a>
@@ -381,12 +396,32 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
      Load the data
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compare-to-observational-fe-database">
-     Compare to observational Fe database
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#subsetting">
+   Subsetting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transforming-from-monthly-to-annual-data">
+   Transforming from monthly to annual data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-to-observational-fe-database">
+   Compare to observational Fe database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources-and-references">
+   Resources and references
+  </a>
  </li>
 </ul>
 
@@ -401,6 +436,42 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="ocean-iron-concentration">
 <h1>Ocean iron concentration<a class="headerlink" href="#ocean-iron-concentration" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Make a map of iron concentration and compare to observational data.</p>
+<ol class="arabic simple">
+<li><p>Gemeral setup</p></li>
+<li><p>Subsetting</p></li>
+<li><p>Processing data</p></li>
+<li><p>Comparing to observational data</p></li>
+</ol>
+<p>TO DO: Add more narrative text, clean up comments, add references (esp. to where Fe obs come from)</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>This needs to be updated later!</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepts</p></th>
+<th class="head"><p>Importance</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/cartopy/cartopy.html">Intro to Cartopy</a></p></td>
+<td><p>Necessary</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>Time to learn</strong>: 15 min</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
@@ -412,11 +483,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <span class="kn">import</span> <span class="nn">pop_tools</span>
 <span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">LocalCluster</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1">#import util</span>
-<span class="c1">#import matt_utils</span>
-<span class="c1">#import tools</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -426,8 +494,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h3>Connect to cluster<a class="headerlink" href="#connect-to-cluster" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">LocalCluster</span>
-<span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_client</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -58654,6 +58721,10 @@ Attributes:
       dtype=&#x27;float32&#x27;, name=&#x27;z_w_top&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5e0a3a98-87dc-440a-a5d8-3ad9be9f9900' class='xr-section-summary-in' type='checkbox'  ><label for='section-5e0a3a98-87dc-440a-a5d8-3ad9be9f9900' class='xr-section-summary' >Attributes: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>title :</span></dt><dd>g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch</dd><dt><span>history :</span></dt><dd>Wed Jun 21 09:15:38 2023: ncks -O -4 -L 1 /glade/scratch/kristenk/archive/g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch/ocn/proc/tseries/month_1/g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch.pop.h.ADVS.195801-202112.nc /glade/scratch/kristenk/archive/g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch/ocn/proc/tseries/month_1/g.e22.GOMIPECOIAF_JRA-1p4-2018.TL319_g17.4p2z.002branch.pop.h.ADVS.195801-202112.nc
 none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/cms/eaton/netcdf/CF-current.htm</dd><dt><span>time_period_freq :</span></dt><dd>month_1</dd><dt><span>model_doi_url :</span></dt><dd>https://doi.org/10.5065/D67H1H0V</dd><dt><span>contents :</span></dt><dd>Diagnostic and Prognostic Variables</dd><dt><span>source :</span></dt><dd>CCSM POP2, the CCSM Ocean Component</dd><dt><span>revision :</span></dt><dd>$Id$</dd><dt><span>calendar :</span></dt><dd>All years have exactly  365 days.</dd><dt><span>start_time :</span></dt><dd>This dataset was created on 2023-06-13 at 16:35:05.0</dd><dt><span>cell_methods :</span></dt><dd>cell_methods = time: mean ==&gt; the variable values are averaged over the time interval between the previous time coordinate and the current one.          cell_methods  absent  ==&gt; the variable values are at the time given by the current time coordinate.</dd><dt><span>NCO :</span></dt><dd>netCDF Operators version 5.1.4 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)</dd></dl></div></li></ul></div></div></div></div>
 </div>
+</div>
+</div>
+<div class="section" id="subsetting">
+<h2>Subsetting<a class="headerlink" href="#subsetting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;Fe&#39;</span><span class="p">]</span>
@@ -58682,6 +58753,9 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 <img alt="../_images/869adb37008b5390fe4b7fc7137155e39e17f7f58688959f684793fbe33c34f4.png" src="../_images/869adb37008b5390fe4b7fc7137155e39e17f7f58688959f684793fbe33c34f4.png" />
 </div>
 </div>
+</div>
+<div class="section" id="transforming-from-monthly-to-annual-data">
+<h2>Transforming from monthly to annual data<a class="headerlink" href="#transforming-from-monthly-to-annual-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -58727,7 +58801,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 </div>
 <div class="section" id="compare-to-observational-fe-database">
-<h3>Compare to observational Fe database<a class="headerlink" href="#compare-to-observational-fe-database" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h2>Compare to observational Fe database<a class="headerlink" href="#compare-to-observational-fe-database" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>(need ref)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -58908,6 +58982,14 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 </div>
 </div>
+<hr class="docutils" />
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>You’ve learned how to make a map of ocean iron and compare it to observations.</p>
+</div>
+<div class="section" id="resources-and-references">
+<h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Add stuff later.</p>
 </div>
 </div>
 
@@ -58938,7 +59020,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Carbon fluxes</p>
+            <p class="prev-next-title">Ocean carbon fluxes</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="ocn-phyto-biomass.html" title="next page">
@@ -58993,7 +59075,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 3 February 2024.
+          Last updated on 4 February 2024.
         </p>
       </div>
     </div>
