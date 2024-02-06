@@ -465,17 +465,16 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Take a look at maps and depth profiles of a few key ocean nutrients, and compare them to an observational dataset.</p>
 <ol class="arabic simple">
-<li><p>Gemeral setup</p></li>
+<li><p>General setup</p></li>
 <li><p>Subsetting</p></li>
 <li><p>Transforming from monthly to annual data</p></li>
 <li><p>Compare to World Ocean Atlas data</p></li>
 <li><p>Make depth profiles</p></li>
 </ol>
-<p>TO DO: Adjust parallel setup to fix warnings, add more narrative text, clean up comments, make sure order makes sense</p>
+<p>TO DO: Adjust parallel setup to fix warnings, clean up comments</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>This needs to be updated later!</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Concepts</p></th>
@@ -484,7 +483,19 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/cartopy/cartopy.html">Intro to Cartopy</a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://projectpythia.org/dask-cookbook/README.html">Dask Cookbook</a></p></td>
+<td><p>Helpful</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/xarray.html">Intro to Xarray</a></p></td>
+<td><p>Helpful</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/matplotlib.html">Matplotlib</a></p></td>
+<td><p>Necessary</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/cartopy/cartopy.html">Intro to Cartopy</a></p></td>
 <td><p>Necessary</p></td>
 <td><p></p></td>
 </tr>
@@ -58787,7 +58798,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Add a docstring</span>
+<span class="sd">    Properly convert monthly data to annual means, taking into account month lengths.</span>
 <span class="sd">    Source: https://ncar.github.io/esds/posts/2021/yearly-averages-xarray/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -59953,7 +59964,7 @@ Data variables:
 <li><p>About the <a class="reference external" href="https://www.ncei.noaa.gov/products/world-ocean-atlas">World Ocean Atlas</a></p></li>
 <li><p><a class="reference external" href="https://www.ncei.noaa.gov/access/world-ocean-atlas-2018/">Data access to WOA18</a></p></li>
 </ul>
-<p>We’ve already regridded the WOA data to be on the same grid as the CESM POP data, so we don’t need to worry about that step. However, if you wanted to compare to a dataset that’s on a different grid, you’d need to go through the regridding process, which is beyond the scope of this cookbook.</p>
+<p>We’ve already regridded the WOA data to be on the same grid as the CESM data, so we don’t need to worry about that step. However, if you wanted to compare to a dataset that’s on a different grid, you’d need to go through the regridding process, which is beyond the scope of this cookbook.</p>
 <p>This dataset has also already had a time mean taken, so there’s no time coordinate.</p>
 <p><em>You might notice that three are three coordinates: <code class="docutils literal notranslate"><span class="pre">z_t</span></code>, <code class="docutils literal notranslate"><span class="pre">z_w</span></code>, and <code class="docutils literal notranslate"><span class="pre">z_w_bot</span></code>. Each of these are different versions of the same vertical coordinate - <code class="docutils literal notranslate"><span class="pre">z_t</span></code> represents the midpoint of a depth layer, <code class="docutils literal notranslate"><span class="pre">z_w</span></code> the top, and <code class="docutils literal notranslate"><span class="pre">z_w_bot</span></code> the bottom. We use <code class="docutils literal notranslate"><span class="pre">z_t</span></code> in this demonstration.</em></p>
 <div class="cell docutils container">
@@ -60847,7 +60858,7 @@ Attributes:
 </div>
 <div class="section" id="surface-comparison">
 <h3>Surface comparison<a class="headerlink" href="#surface-comparison" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>We choose to set up a dictionary with some parameters for each plot we want to make, to cut down on repetition in the actual plotting code block. This could be condensed even further, but there’s a tradeoff between conciseness and readability! We specify the variables we want to plot (in this case different nutrients) and things like the colormaps and normalization.</p>
+<p>We choose to set up a dictionary with some parameters for each plot we want to make, to cut down on repetition in the actual plotting code block. This could be condensed even further, but there’s a tradeoff between conciseness and readability! We specify the variables we want to plot (in this case different nutrients) and things like the colormaps and normalization. In addition to plotting each nutrient from the modeled data and observations, we also plot the bias, which is the difference between the two datasets. This helps us see how the model differs from observations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_dict_surf</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CESMNO3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;CESM surface NO$_3$&#39;</span><span class="p">,</span>
@@ -61040,7 +61051,7 @@ Consider scattering data ahead of time and using futures.
 </div>
 <div class="section" id="global-mean-macronutrient-profiles">
 <h2>Global mean macronutrient profiles<a class="headerlink" href="#global-mean-macronutrient-profiles" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Let’s write a function to take a global mean of the variables we’re interested in, so that we can look at some depth profiles rather than maps. Also remember that we already took a mean over the whole time range (and the WOA dataset already had this mean taken), so this is a mean in time as well.</p>
+<p>Let’s write a function to take a global mean of the variables we’re interested in, so that we can look at some depth profiles rather than maps. Also remember that we already took a mean over the whole time range (and the WOA dataset already had this mean taken), so this is a mean in time as well. Like the above maps, we also plot a bias panel to directly compare the difference between the datasets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">global_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds_grid</span><span class="p">,</span> <span class="n">compute_vars</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_ms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -61181,7 +61192,12 @@ Consider scattering data ahead of time and using futures.
 </div>
 <div class="section" id="resources-and-references">
 <h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Add the WOA references at minimum.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ncar.github.io/esds/posts/2021/yearly-averages-xarray/">Converting from monthly to annual data</a></p></li>
+<li><p><a class="reference external" href="https://www.ncei.noaa.gov/products/world-ocean-atlas">About World Ocean Atlas data</a></p></li>
+<li><p><a class="reference external" href="https://www.ncei.noaa.gov/access/world-ocean-atlas-2018/">World Ocean Atlas data location</a></p></li>
+<li><p>A resource introducing the role of nutrients in the ocean?</p></li>
+</ul>
 </div>
 </div>
 
@@ -61267,7 +61283,7 @@ Consider scattering data ahead of time and using futures.
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 4 February 2024.
+          Last updated on 6 February 2024.
         </p>
       </div>
     </div>
