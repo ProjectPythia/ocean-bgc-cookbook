@@ -439,14 +439,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <hr class="docutils" />
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Make a map of iron concentration and compare to observational data.</p>
+<p>Iron is one of the most important micronutrients in the ocean, limiting production in some areas. In this notebook, we make a map of iron concentration and compare to observational data.</p>
 <ol class="arabic simple">
 <li><p>Gemeral setup</p></li>
 <li><p>Subsetting</p></li>
 <li><p>Processing data</p></li>
 <li><p>Comparing to observational data</p></li>
 </ol>
-<p>TO DO: Add more narrative text, clean up comments, add references (esp. to where Fe obs come from)</p>
+<p>TO DO: Add more narrative text, clean up comments, clarify how Fe obs are compiled exactly</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
@@ -58767,11 +58767,12 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 <div class="section" id="transforming-from-monthly-to-annual-data">
 <h2>Transforming from monthly to annual data<a class="headerlink" href="#transforming-from-monthly-to-annual-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Pull in the function we defined in the nutrients notebook…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Add a docstring</span>
+<span class="sd">    Properly convert monthly data to annual means, taking into account month lengths.</span>
 <span class="sd">    Source: https://ncar.github.io/esds/posts/2021/yearly-averages-xarray/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -58788,15 +58789,15 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 
     <span class="c1"># Calculate the weighted average</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">ds</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 </div>
 </div>
+<p>Take the long-term mean of our data set. We process monthly to annual with our custom function, then use xarray’s built-in <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> function to process from annual data to a single mean over time, since each year is the same length.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Take the long-term mean of our data set, processing years and months separately (improve this comment)</span>
-
-<span class="n">ds</span> <span class="o">=</span> <span class="n">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -58813,7 +58814,13 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 <div class="section" id="compare-to-observational-fe-database">
 <h2>Compare to observational Fe database<a class="headerlink" href="#compare-to-observational-fe-database" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>(need ref)</p>
+<p>Observations compiled from:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0009254118302961?pes=vor">Schlitzer et al., 2018</a></p></li>
+<li><p><a class="reference external" href="https://bg.copernicus.org/articles/5/631/2008/">Moore and Braucher, 2008</a></p></li>
+<li><p><a class="reference external" href="https://bg.copernicus.org/articles/9/2333/2012/">Tagliabue et al., 2012</a></p></li>
+</ul>
+<p>as collected by <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2021MS002647">Long et al., 2021</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dFe_obs_file</span> <span class="o">=</span> <span class="s1">&#39;/glade/u/home/kristenk/cesm2-marbl/notebooks/discrete_obs/dFe-database-2021-05-20.csv&#39;</span>
@@ -59000,7 +59007,11 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 <div class="section" id="resources-and-references">
 <h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Add stuff later.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0009254118302961?pes=vor">Schlitzer et al., 2018</a></p></li>
+<li><p><a class="reference external" href="https://bg.copernicus.org/articles/5/631/2008/">Moore and Braucher, 2008</a></p></li>
+<li><p><a class="reference external" href="https://bg.copernicus.org/articles/9/2333/2012/">Tagliabue et al., 2012</a></p></li>
+</ul>
 </div>
 </div>
 
@@ -59086,7 +59097,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 6 February 2024.
+          Last updated on 14 February 2024.
         </p>
       </div>
     </div>

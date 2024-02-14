@@ -465,10 +465,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="phytoplankton-biomass">
 <h1>Phytoplankton biomass<a class="headerlink" href="#phytoplankton-biomass" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<div>
+<img src="https://img.pagecloud.com/nXOUkUjhhkla7tj6dosu06sE0-I=/1398x0/filters:no_upscale()/scientific-illustrations-by-kristen/images/cocco_in_blue_v2-lc467.png" width="500"/>
+</div>
+<p>A coccolithophore, a type of phytoplankton. Art credit: <a class="reference external" href="https://www.earthaliveillos.com/">Kristen Krumhardt</a></p>
 <hr class="docutils" />
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Evaluate different quantities related to phytoplankton biomass and productivity modeled by CESM-MARBL.</p>
+<p>There are several different types of phytoplankton that are prevalent in different parts of the ocean. In this notebook, we evaluate the biomass and total production of these phytoplankton in different areas, as modeled by CESM-MARBL.</p>
 <ol class="arabic simple">
 <li><p>General setup</p></li>
 <li><p>Subsetting</p></li>
@@ -58784,7 +58788,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 <div class="section" id="taking-a-quick-look">
 <h2>Taking a quick look<a class="headerlink" href="#taking-a-quick-look" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>This looks different between winter and summer! (Improve comment)</p>
+<p>This looks different between winter and summer! Also note something about the coccolithophore belt in the Southern ocean. (Improve comment)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">coccoC</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">z_t_150m</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -58819,7 +58823,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Add a docstring</span>
+<span class="sd">    Properly convert monthly data to annual means, taking into account month lengths.</span>
 <span class="sd">    Source: https://ncar.github.io/esds/posts/2021/yearly-averages-xarray/</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -58836,15 +58840,20 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 
     <span class="c1"># Calculate the weighted average</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">ds</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;time.year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 </div>
 </div>
+<p>Take the long-term mean of our data set. We process monthly to annual with our custom function, then use xarray’s built-in <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> function to process from annual data to a single mean over time, since each year is the same length.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Take the long-term mean of our data set, processing years and months separately (improve this comment)</span>
-
-<span class="n">ds</span> <span class="o">=</span> <span class="n">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KeyboardInterrupt
 </pre></div>
 </div>
 </div>
@@ -59589,7 +59598,7 @@ Data variables:
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 6 February 2024.
+          Last updated on 14 February 2024.
         </p>
       </div>
     </div>

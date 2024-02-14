@@ -446,7 +446,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <hr class="docutils" />
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Make maps of some key variables related to ocean carbon.</p>
+<p>The carbon cycle is a key part of ocean biogeochemistry, and more broadly Earth’s climate system. Here we learn how to make maps of some key variables modeled by CESM related to the marine carbon cycle.</p>
 <ol class="arabic simple">
 <li><p>General setup</p></li>
 <li><p>Subsetting</p></li>
@@ -58805,11 +58805,15 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 </div>
 </div>
 </div>
+<p>Take the long-term mean of our data set. We process monthly to annual with our custom function, then use xarray’s built-in <code class="docutils literal notranslate"><span class="pre">.mean()</span></code> function to process from annual data to a single mean over time, since each year is the same length.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Take the long-term mean of our data set, processing years and months separately (improve this comment)</span>
-
-<span class="n">ds</span> <span class="o">=</span> <span class="n">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KeyboardInterrupt
 </pre></div>
 </div>
 </div>
@@ -58817,6 +58821,7 @@ none</dd><dt><span>Conventions :</span></dt><dd>CF-1.0; http://www.cgd.ucar.edu/
 <div class="section" id="do-some-global-integrals-to-check-if-our-values-look-reasonable">
 <h3>Do some global integrals, to check if our values look reasonable<a class="headerlink" href="#do-some-global-integrals-to-check-if-our-values-look-reasonable" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0967064502000036">Takahashi et al., 2002</a></p></li>
 <li><p><a class="reference external" href="https://aslopubs.onlinelibrary.wiley.com/doi/10.4319/lo.1997.42.1.0001">Behrenfeld and Falkowski, 1997</a></p></li>
 <li><p><a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2016GB005551">DeVries and Weber, 2017</a></p></li>
 </ul>
@@ -59209,15 +59214,16 @@ Data variables:
 </div>
 <div class="section" id="make-some-maps">
 <h2>Make some maps<a class="headerlink" href="#make-some-maps" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>First, convert from mmol/m3 cm/s to mmol/m2/day.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### convert from mmol/m3 cm/s to mmol/m2/d</span>
-<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
     <span class="n">ds</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="mf">86400.</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Then, make a few maps of key carbon-related variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
@@ -59272,7 +59278,9 @@ Data variables:
 </div>
 <div class="section" id="resources-and-references">
 <h2>Resources and references<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Add stuff later.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doi.org/10.2307/j.ctt3fgxqx.12">Sarmiento and Gruber, Chapter 8: The Carbon Cycle</a></p></li>
+</ul>
 </div>
 </div>
 
@@ -59358,7 +59366,7 @@ Data variables:
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 6 February 2024.
+          Last updated on 14 February 2024.
         </p>
       </div>
     </div>
