@@ -47,7 +47,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -71,6 +71,8 @@
                 gtag('config', 'G-T52X8HNYE8');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -78,7 +80,7 @@
     <link rel="next" title="How to cite this cookbook" href="notebooks/how-to-cite.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="8 June 2024"/>
+    <meta name="docbuild:last-update" content="14 June 2024"/>
   </head>
   
   
@@ -421,7 +423,7 @@
 <p>This Project Pythia Cookbook covers working with various sources of ocean biogeochemistry data, including Community Earth System Model (CESM) output and observational data.</p>
 <section id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
-<p>(Add a few sentences stating why this cookbook will be useful. What skills will you, “the chef”, gain once you have reached the end of the cookbook?)</p>
+<p>You’ll get a brief introduction to some metrics important to ocean biogeochemistry, from physical quantities like temperature to biological quantities like plankton biomass. You’ll learn some of the data science techniques used to work with this information, and see the relationship between modeled and observational estimates.</p>
 </section>
 <section id="authors">
 <h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
@@ -437,20 +439,20 @@
 <h2>Structure<a class="headerlink" href="#structure" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <section id="intro">
 <h3>Intro<a class="headerlink" href="#intro" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “The foundational content includes … “)</p>
+<p>Learn how to read in the main CESM dataset that we’ll be working with, and make a few simple maps.</p>
 </section>
 <section id="nutrients">
 <h3>Nutrients<a class="headerlink" href="#nutrients" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “Example workflows include … “)</p>
+<p>Explore the distribution of several nutrients in the ocean with maps and vertical profiles, and compare to observational data.</p>
 </section>
 <section id="plankton">
 <h3>Plankton<a class="headerlink" href="#plankton" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “Example workflows include … “)</p>
+<p>Explore the distribution of the phytoplankton and zooplankton functional types represented in CESM, and compare to observational data.</p>
 </section>
 </section>
 <section id="running-the-notebooks">
 <h2>Running the Notebooks<a class="headerlink" href="#running-the-notebooks" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
-<p>You can either run the notebook using <a class="reference external" href="https://binder.projectpythia.org/">Binder</a> or on your local machine.</p>
+<p>You can either run the notebooks using <a class="reference external" href="https://binder.projectpythia.org/">Binder</a> or on your local machine.</p>
 <section id="running-on-binder">
 <h3>Running on Binder<a class="headerlink" href="#running-on-binder" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>The simplest way to interact with a Jupyter Notebook is through
@@ -593,9 +595,9 @@ jupyter<span class="w"> </span>lab
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -753,9 +755,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -790,7 +792,7 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 8 June 2024.
+  Last updated on 14 June 2024.
   <br/>
 </p>
   </div>
@@ -844,7 +846,7 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 8 June 2024.
+          Last updated on 14 June 2024.
         </p>
       </div>
     </div>
