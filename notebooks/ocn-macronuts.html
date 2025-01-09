@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -37,10 +39,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d0efeab3" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -79,7 +82,8 @@
     <link rel="prev" title="Making a simple map of a variable" href="ocn-tracer-views.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="7 August 2024"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="9 January 2025"/>
   </head>
   
   
@@ -118,7 +122,7 @@
     
     
     <img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Project Pythia Cookbook Template - Home"/>
-    <script>document.write(`<img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Project Pythia Cookbook Template - Home"/>`);</script>
+    <img src="../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark pst-js-only" alt="Project Pythia Cookbook Template - Home"/>
   
   
 </a></div>
@@ -345,7 +349,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -392,9 +395,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
         </div>
@@ -465,18 +473,18 @@
 <h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">cartopy</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">pop_tools</span>
-<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">LocalCluster</span>
-<span class="kn">import</span> <span class="nn">s3fs</span>
-<span class="kn">import</span> <span class="nn">netCDF4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pop_tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dask.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalCluster</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">s3fs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
 
-<span class="kn">from</span> <span class="nn">module</span> <span class="kn">import</span> <span class="n">adjust_pop_grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">module</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjust_pop_grid</span>
 </pre></div>
 </div>
 </div>
@@ -512,7 +520,7 @@
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px;">Client</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-e8cd09a5-550a-11ef-8a5b-6045bdbbe7f0</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-3a8bb415-cec0-11ef-8ac3-00224809fda2</p>
         <table style="width: 100%; text-align: left;">
 
         <tr>
@@ -543,7 +551,7 @@
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">4e1a915c</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">33a015f1</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
@@ -580,11 +588,11 @@
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-b6e94331-dba2-4241-80e9-aa36105e09ea</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-58532e50-d008-4fbc-b247-b4293f5fcf47</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://127.0.0.1:37105
+                        <strong>Comm:</strong> tcp://127.0.0.1:34731
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 4
@@ -626,7 +634,7 @@
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:37653
+                            <strong>Comm: </strong> tcp://127.0.0.1:35753
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -634,7 +642,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:37001/status" target="_blank">http://127.0.0.1:37001/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:41879/status" target="_blank">http://127.0.0.1:41879/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.90 GiB
@@ -642,13 +650,13 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:38187
+                            <strong>Nanny: </strong> tcp://127.0.0.1:44755
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-rbw_hvph
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-zy0o6phc
                         </td>
                     </tr>
 
@@ -671,7 +679,7 @@
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:43765
+                            <strong>Comm: </strong> tcp://127.0.0.1:42823
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -679,7 +687,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:44847/status" target="_blank">http://127.0.0.1:44847/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:42831/status" target="_blank">http://127.0.0.1:42831/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.90 GiB
@@ -687,13 +695,13 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:43741
+                            <strong>Nanny: </strong> tcp://127.0.0.1:36041
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-3tiygbrr
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-auzvqj75
                         </td>
                     </tr>
 
@@ -716,7 +724,7 @@
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:37639
+                            <strong>Comm: </strong> tcp://127.0.0.1:33597
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -724,7 +732,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:34117/status" target="_blank">http://127.0.0.1:34117/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:44827/status" target="_blank">http://127.0.0.1:44827/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.90 GiB
@@ -732,13 +740,13 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:33443
+                            <strong>Nanny: </strong> tcp://127.0.0.1:44431
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-c0zl8su_
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-i3e2v5mz
                         </td>
                     </tr>
 
@@ -761,7 +769,7 @@
                 <table style="width: 100%; text-align: left;">
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Comm: </strong> tcp://127.0.0.1:45899
+                            <strong>Comm: </strong> tcp://127.0.0.1:44671
                         </td>
                         <td style="text-align: left;">
                             <strong>Total threads: </strong> 1
@@ -769,7 +777,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:45051/status" target="_blank">http://127.0.0.1:45051/status</a>
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:37411/status" target="_blank">http://127.0.0.1:37411/status</a>
                         </td>
                         <td style="text-align: left;">
                             <strong>Memory: </strong> 3.90 GiB
@@ -777,13 +785,13 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">
-                            <strong>Nanny: </strong> tcp://127.0.0.1:43045
+                            <strong>Nanny: </strong> tcp://127.0.0.1:37379
                         </td>
                         <td style="text-align: left;"></td>
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: left;">
-                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-2aurs0s7
+                            <strong>Local directory: </strong> /tmp/dask-scratch-space/worker-1uj5fprb
                         </td>
                     </tr>
 
@@ -873,18 +881,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.12/site-packages/distributed/client.py:3362: UserWarning: Sending large graph of size 10.01 MiB.
-This may cause some slowdown.
-Consider loading the data with Dask directly
- or using futures or delayed objects to embed the data into the graph without repetition.
-See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask for more information.
-  warnings.warn(
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fdbf864a450&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f9e7c0d5070&gt;
-</pre></div>
-</div>
-<img alt="../_images/d605f0caefc082176d59817b8b9c993b3ba98508bcbbd80897eac0d20070453e.png" src="../_images/d605f0caefc082176d59817b8b9c993b3ba98508bcbbd80897eac0d20070453e.png" />
+<img alt="../_images/8a9d687da941417385acb77faf8e4cbea5c02b7bfc7574c982f6e931837d3974.png" src="../_images/8a9d687da941417385acb77faf8e4cbea5c02b7bfc7574c982f6e931837d3974.png" />
 </div>
 </div>
 </section>
@@ -893,7 +893,7 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 <p>We can’t just use xarray’s regular <code class="docutils literal notranslate"><span class="pre">mean()</span></code> function because months have different numbers of days in them, so we have to weight by that to ensure the annual mean is accurate. See this <a class="reference external" href="https://ncar.github.io/esds/posts/2021/yearly-averages-xarray/">ESDS blog post</a> for a more detailed explanation with examples!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">year_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Properly convert monthly data to annual means, taking into account month lengths.</span>
 <span class="sd">    Source: https://ncar.github.io/esds/posts/2021/yearly-averages-xarray/</span>
@@ -954,14 +954,14 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
+  --xr-border-color: #1f1f1f;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -1006,7 +1006,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -1014,7 +1014,9 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
@@ -1024,6 +1026,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1047,7 +1053,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -1058,7 +1064,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -1130,15 +1136,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -1300,7 +1306,7 @@ Dimensions without coordinates: nlat, nlon
 Data variables:
     NO3       (year, z_t, nlat, nlon) float64 590MB dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;
     PO4       (year, z_t, nlat, nlon) float64 590MB dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;
-    SiO3      (year, z_t, nlat, nlon) float64 590MB dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-d20d86a6-558b-45f8-b756-3915f3aee25f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-d20d86a6-558b-45f8-b756-3915f3aee25f' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>year</span>: 10</li><li><span class='xr-has-index'>z_t</span>: 60</li><li><span>nlat</span>: 384</li><li><span>nlon</span>: 320</li><li><span class='xr-has-index'>z_t_150m</span>: 15</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-cf834c58-bdde-43c6-818d-d1156299338c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-cf834c58-bdde-43c6-818d-d1156299338c' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>TLAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-c5f7822d-a7d7-48f2-8ee1-c7bd2691e786' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c5f7822d-a7d7-48f2-8ee1-c7bd2691e786' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3cc745cb-fc69-4c1f-b389-7ae87dc5b00c' class='xr-var-data-in' type='checkbox'><label for='data-3cc745cb-fc69-4c1f-b389-7ae87dc5b00c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid latitudes</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    SiO3      (year, z_t, nlat, nlon) float64 590MB dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-99f6b825-c092-49ae-b620-e0f23dafc171' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-99f6b825-c092-49ae-b620-e0f23dafc171' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>year</span>: 10</li><li><span class='xr-has-index'>z_t</span>: 60</li><li><span>nlat</span>: 384</li><li><span>nlon</span>: 320</li><li><span class='xr-has-index'>z_t_150m</span>: 15</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-642c344e-58d7-48ee-8625-33ae7e49e39c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-642c344e-58d7-48ee-8625-33ae7e49e39c' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>TLAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-ed38f7cb-71d7-4516-ad5e-c7f65de4f194' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ed38f7cb-71d7-4516-ad5e-c7f65de4f194' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7ce07123-7221-4ccb-925c-7e91e0a6c905' class='xr-var-data-in' type='checkbox'><label for='data-7ce07123-7221-4ccb-925c-7e91e0a6c905' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid latitudes</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1355,7 +1361,7 @@ Data variables:
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-93d608c7-c280-4dce-a4e1-a67b842705a5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-93d608c7-c280-4dce-a4e1-a67b842705a5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-73f0cb13-0710-4b18-87c1-34a6f70e4b24' class='xr-var-data-in' type='checkbox'><label for='data-73f0cb13-0710-4b18-87c1-34a6f70e4b24' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid longitudes</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-17fe8ae0-3082-4cd0-9d0a-1fea0853cc0c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-17fe8ae0-3082-4cd0-9d0a-1fea0853cc0c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e8a11731-89c4-4ecd-be69-4e66886a9efc' class='xr-var-data-in' type='checkbox'><label for='data-e8a11731-89c4-4ecd-be69-4e66886a9efc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid longitudes</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1410,7 +1416,7 @@ Data variables:
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 5.375e+05</div><input id='attrs-80e28d0c-e3c0-4f23-943f-35cf63aeb100' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-80e28d0c-e3c0-4f23-943f-35cf63aeb100' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-aafc1111-cada-453e-9e9e-8ad0c7d3edb5' class='xr-var-data-in' type='checkbox'><label for='data-aafc1111-cada-453e-9e9e-8ad0c7d3edb5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>537500.0</dd></dl></div><div class='xr-var-data'><pre>array([5.000000e+02, 1.500000e+03, 2.500000e+03, 3.500000e+03, 4.500000e+03,
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 5.375e+05</div><input id='attrs-8db1cafe-1b3f-4827-b1f0-548ef9190628' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8db1cafe-1b3f-4827-b1f0-548ef9190628' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d1d78d59-5d96-499c-80be-36da9a2fb346' class='xr-var-data-in' type='checkbox'><label for='data-d1d78d59-5d96-499c-80be-36da9a2fb346' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>537500.0</dd></dl></div><div class='xr-var-data'><pre>array([5.000000e+02, 1.500000e+03, 2.500000e+03, 3.500000e+03, 4.500000e+03,
        5.500000e+03, 6.500000e+03, 7.500000e+03, 8.500000e+03, 9.500000e+03,
        1.050000e+04, 1.150000e+04, 1.250000e+04, 1.350000e+04, 1.450000e+04,
        1.550000e+04, 1.650984e+04, 1.754790e+04, 1.862913e+04, 1.976603e+04,
@@ -1422,8 +1428,8 @@ Data variables:
        1.968944e+05, 2.186457e+05, 2.413972e+05, 2.649001e+05, 2.889385e+05,
        3.133405e+05, 3.379793e+05, 3.627670e+05, 3.876452e+05, 4.125768e+05,
        4.375392e+05, 4.625190e+05, 4.875083e+05, 5.125028e+05, 5.375000e+05],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t_150m</span></div><div class='xr-var-dims'>(z_t_150m)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 1.35e+04 1.45e+04</div><input id='attrs-02cd765f-8429-4019-b0a2-a5ecc7d7b12c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-02cd765f-8429-4019-b0a2-a5ecc7d7b12c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b0e9266d-98f7-4039-b469-f477c22d8475' class='xr-var-data-in' type='checkbox'><label for='data-b0e9266d-98f7-4039-b469-f477c22d8475' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>14500.0</dd></dl></div><div class='xr-var-data'><pre>array([  500.,  1500.,  2500.,  3500.,  4500.,  5500.,  6500.,  7500.,  8500.,
-        9500., 10500., 11500., 12500., 13500., 14500.], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>year</span></div><div class='xr-var-dims'>(year)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>2010 2011 2012 ... 2017 2018 2019</div><input id='attrs-9c5b9e3f-b69c-48ce-b50c-bc423bdca71c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9c5b9e3f-b69c-48ce-b50c-bc423bdca71c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f8461429-b886-4a7e-a7fc-7cc7f0317e72' class='xr-var-data-in' type='checkbox'><label for='data-f8461429-b886-4a7e-a7fc-7cc7f0317e72' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c141548b-6e82-4cf1-8db9-d97c90d2e875' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c141548b-6e82-4cf1-8db9-d97c90d2e875' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>NO3</span></div><div class='xr-var-dims'>(year, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-58865e4c-0c94-428c-aa1c-af961248f716' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-58865e4c-0c94-428c-aa1c-af961248f716' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f320266c-0e53-4fac-9b67-6e2b89aa66bb' class='xr-var-data-in' type='checkbox'><label for='data-f320266c-0e53-4fac-9b67-6e2b89aa66bb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t_150m</span></div><div class='xr-var-dims'>(z_t_150m)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 1.35e+04 1.45e+04</div><input id='attrs-a2c596f5-1322-4cbf-b99e-23e866f0d05f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a2c596f5-1322-4cbf-b99e-23e866f0d05f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2d3136c3-698b-41ad-b0f9-673bfa5d7a66' class='xr-var-data-in' type='checkbox'><label for='data-2d3136c3-698b-41ad-b0f9-673bfa5d7a66' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>14500.0</dd></dl></div><div class='xr-var-data'><pre>array([  500.,  1500.,  2500.,  3500.,  4500.,  5500.,  6500.,  7500.,  8500.,
+        9500., 10500., 11500., 12500., 13500., 14500.], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>year</span></div><div class='xr-var-dims'>(year)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>2010 2011 2012 ... 2017 2018 2019</div><input id='attrs-822ee852-7008-4431-af89-5c2c72713b24' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-822ee852-7008-4431-af89-5c2c72713b24' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7244caee-4700-49db-8f86-5969a415acb1' class='xr-var-data-in' type='checkbox'><label for='data-7244caee-4700-49db-8f86-5969a415acb1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b13ae97e-6053-4952-918e-60ffa9aea085' class='xr-section-summary-in' type='checkbox'  checked><label for='section-b13ae97e-6053-4952-918e-60ffa9aea085' class='xr-section-summary' >Data variables: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>NO3</span></div><div class='xr-var-dims'>(year, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-cf21b736-cd29-4b10-875e-7751b2c1d37b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-cf21b736-cd29-4b10-875e-7751b2c1d37b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3a8de9b6-2572-4d51-955b-f122359dd463' class='xr-var-data-in' type='checkbox'><label for='data-3a8de9b6-2572-4d51-955b-f122359dd463' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1544,7 +1550,7 @@ Data variables:
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>PO4</span></div><div class='xr-var-dims'>(year, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-ea260e32-98b4-4dd1-8136-ac372f95ee70' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ea260e32-98b4-4dd1-8136-ac372f95ee70' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9ec5e030-023a-4bbc-bf5e-e43e68539a17' class='xr-var-data-in' type='checkbox'><label for='data-9ec5e030-023a-4bbc-bf5e-e43e68539a17' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>PO4</span></div><div class='xr-var-dims'>(year, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-21bbbda3-7111-47ee-be6e-0ac82cb39fb4' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-21bbbda3-7111-47ee-be6e-0ac82cb39fb4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d9d37125-07fa-4fd3-a277-7529112e9dda' class='xr-var-data-in' type='checkbox'><label for='data-d9d37125-07fa-4fd3-a277-7529112e9dda' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1665,7 +1671,7 @@ Data variables:
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SiO3</span></div><div class='xr-var-dims'>(year, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-157514e2-e3e1-49a0-b6c1-8e06b99dce4d' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-157514e2-e3e1-49a0-b6c1-8e06b99dce4d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fd0ff360-04e7-49dd-ba3b-dca52f3c8de2' class='xr-var-data-in' type='checkbox'><label for='data-fd0ff360-04e7-49dd-ba3b-dca52f3c8de2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SiO3</span></div><div class='xr-var-dims'>(year, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(1, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-ccad67d2-86b1-4900-85f9-ebf7cbd3da43' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-ccad67d2-86b1-4900-85f9-ebf7cbd3da43' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3474ca2-a643-4c01-8136-21ed8873546b' class='xr-var-data-in' type='checkbox'><label for='data-a3474ca2-a643-4c01-8136-21ed8873546b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1786,7 +1792,7 @@ Data variables:
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-05191c00-c58d-405c-a8a1-91a2be56aaae' class='xr-section-summary-in' type='checkbox'  ><label for='section-05191c00-c58d-405c-a8a1-91a2be56aaae' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>z_t</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c530aa1b-f7f8-4a9f-9bf1-07266b472733' class='xr-index-data-in' type='checkbox'/><label for='index-c530aa1b-f7f8-4a9f-9bf1-07266b472733' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([          500.0,          1500.0,          2500.0,          3500.0,
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-d97a1322-44de-44e1-afab-75dc8ec7bf15' class='xr-section-summary-in' type='checkbox'  ><label for='section-d97a1322-44de-44e1-afab-75dc8ec7bf15' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>z_t</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-996b0870-1501-4e2d-9efd-dac71a997476' class='xr-index-data-in' type='checkbox'/><label for='index-996b0870-1501-4e2d-9efd-dac71a997476' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([          500.0,          1500.0,          2500.0,          3500.0,
                 4500.0,          5500.0,          6500.0,          7500.0,
                 8500.0,          9500.0,         10500.0,         11500.0,
                12500.0,         13500.0,         14500.0,         15500.0,
@@ -1801,9 +1807,9 @@ Data variables:
             264900.125,    288938.46875,    313340.46875,    337979.34375,
           362767.03125,     387645.1875,     412576.8125,       437539.25,
           462519.03125,    487508.34375,     512502.8125,        537500.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;z_t&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_t_150m</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8e2e79ec-bbf8-4d38-abe3-6599ca3a8830' class='xr-index-data-in' type='checkbox'/><label for='index-8e2e79ec-bbf8-4d38-abe3-6599ca3a8830' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  500.0,  1500.0,  2500.0,  3500.0,  4500.0,  5500.0,  6500.0,  7500.0,
+      dtype=&#x27;float32&#x27;, name=&#x27;z_t&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_t_150m</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-4f8d9c98-08b3-4f44-8003-d4f102f60a14' class='xr-index-data-in' type='checkbox'/><label for='index-4f8d9c98-08b3-4f44-8003-d4f102f60a14' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  500.0,  1500.0,  2500.0,  3500.0,  4500.0,  5500.0,  6500.0,  7500.0,
         8500.0,  9500.0, 10500.0, 11500.0, 12500.0, 13500.0, 14500.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;z_t_150m&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>year</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-16ea92e8-bfe7-4b9f-80e3-32f9954a0f8a' class='xr-index-data-in' type='checkbox'/><label for='index-16ea92e8-bfe7-4b9f-80e3-32f9954a0f8a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019], dtype=&#x27;int64&#x27;, name=&#x27;year&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-52ebe14e-d439-4a3a-8d92-c5555052ebe1' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-52ebe14e-d439-4a3a-8d92-c5555052ebe1' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float32&#x27;, name=&#x27;z_t_150m&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>year</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-e10b072e-0899-4a5b-b669-614ff2dd076b' class='xr-index-data-in' type='checkbox'/><label for='index-e10b072e-0899-4a5b-b669-614ff2dd076b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019], dtype=&#x27;int64&#x27;, name=&#x27;year&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3d9bd05c-7486-4fc6-8766-1a202c832dd7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3d9bd05c-7486-4fc6-8766-1a202c832dd7' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Note that our time coordinate is now called <code class="docutils literal notranslate"><span class="pre">year</span></code> instead, and has only years now. We can select specific years to plot:</p>
 <div class="cell docutils container">
@@ -1813,18 +1819,10 @@ Data variables:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.12/site-packages/distributed/client.py:3362: UserWarning: Sending large graph of size 10.01 MiB.
-This may cause some slowdown.
-Consider loading the data with Dask directly
- or using futures or delayed objects to embed the data into the graph without repetition.
-See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask for more information.
-  warnings.warn(
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7fdc00159d60&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.QuadMesh at 0x7f9e8c5e7950&gt;
-</pre></div>
-</div>
-<img alt="../_images/32e7e9fea1a15e6ac66e354e4b77e9b12e0cdbf38addf719d49859e5fa76bcca.png" src="../_images/32e7e9fea1a15e6ac66e354e4b77e9b12e0cdbf38addf719d49859e5fa76bcca.png" />
+<img alt="../_images/3b4cebad3dc2ef0b2a3fdce0ff568b7ab3edf99312e56d0368b7d27b0c88b51b.png" src="../_images/3b4cebad3dc2ef0b2a3fdce0ff568b7ab3edf99312e56d0368b7d27b0c88b51b.png" />
 </div>
 </div>
 <section id="lets-make-a-nicer-looking-map">
@@ -1847,7 +1845,7 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9a7f244a3d5822c0265b014a7fe1555877266961dd31c1957f544d69360c9772.png" src="../_images/9a7f244a3d5822c0265b014a7fe1555877266961dd31c1957f544d69360c9772.png" />
+<img alt="../_images/a34850247e63a23edf67d8034df7d26c091f45d8c18557c8aede3d010c085808.png" src="../_images/a34850247e63a23edf67d8034df7d26c091f45d8c18557c8aede3d010c085808.png" />
 </div>
 </div>
 </section>
@@ -1904,14 +1902,14 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
+  --xr-border-color: #1f1f1f;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -1956,7 +1954,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -1964,7 +1962,9 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
@@ -1974,6 +1974,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1997,7 +2001,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -2008,7 +2012,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -2080,15 +2084,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -2260,7 +2264,7 @@ Data variables: (12/17)
     REGION_MASK  (nlat, nlon) int32 492kB 0 0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0
     dz           (z_t) float64 480B 1e+03 1e+03 1e+03 ... 2.5e+04 2.5e+04
 Attributes:
-    history:  created by kristen krumhardt on 2019-10-25</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-8872125b-2b57-4bb8-be81-4ad48389be5f' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-8872125b-2b57-4bb8-be81-4ad48389be5f' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>z_t</span>: 60</li><li><span>nlat</span>: 384</li><li><span>nlon</span>: 320</li><li><span class='xr-has-index'>z_w</span>: 60</li><li><span class='xr-has-index'>z_w_bot</span>: 60</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-f3050cc0-e9e1-4afc-949f-0c8868a679af' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f3050cc0-e9e1-4afc-949f-0c8868a679af' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 5.375e+05</div><input id='attrs-5d6acdbc-ce85-4e24-b011-759a61c4969d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5d6acdbc-ce85-4e24-b011-759a61c4969d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-38c1a119-4b91-49a7-9a57-a34886c78cd3' class='xr-var-data-in' type='checkbox'><label for='data-38c1a119-4b91-49a7-9a57-a34886c78cd3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>537500.0</dd></dl></div><div class='xr-var-data'><pre>array([5.000000e+02, 1.500000e+03, 2.500000e+03, 3.500000e+03, 4.500000e+03,
+    history:  created by kristen krumhardt on 2019-10-25</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-9ea4fb09-897b-4d57-9f2d-5670dd8d7842' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9ea4fb09-897b-4d57-9f2d-5670dd8d7842' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>z_t</span>: 60</li><li><span>nlat</span>: 384</li><li><span>nlon</span>: 320</li><li><span class='xr-has-index'>z_w</span>: 60</li><li><span class='xr-has-index'>z_w_bot</span>: 60</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-c684a864-0d12-44a2-a24a-6863799f1b16' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c684a864-0d12-44a2-a24a-6863799f1b16' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 5.375e+05</div><input id='attrs-854be844-bcac-4924-8a74-a7ec6f244518' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-854be844-bcac-4924-8a74-a7ec6f244518' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f8e64a96-6c51-4bd7-be5d-5fc182240822' class='xr-var-data-in' type='checkbox'><label for='data-f8e64a96-6c51-4bd7-be5d-5fc182240822' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>537500.0</dd></dl></div><div class='xr-var-data'><pre>array([5.000000e+02, 1.500000e+03, 2.500000e+03, 3.500000e+03, 4.500000e+03,
        5.500000e+03, 6.500000e+03, 7.500000e+03, 8.500000e+03, 9.500000e+03,
        1.050000e+04, 1.150000e+04, 1.250000e+04, 1.350000e+04, 1.450000e+04,
        1.550000e+04, 1.650984e+04, 1.754790e+04, 1.862913e+04, 1.976603e+04,
@@ -2272,7 +2276,7 @@ Attributes:
        1.968944e+05, 2.186457e+05, 2.413972e+05, 2.649001e+05, 2.889385e+05,
        3.133405e+05, 3.379793e+05, 3.627670e+05, 3.876452e+05, 4.125768e+05,
        4.375392e+05, 4.625190e+05, 4.875083e+05, 5.125028e+05, 5.375000e+05],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_w</span></div><div class='xr-var-dims'>(z_w)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 1e+03 2e+03 ... 5e+05 5.25e+05</div><input id='attrs-5bdd70fc-e85e-4731-9ef7-7a6bc907bddc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5bdd70fc-e85e-4731-9ef7-7a6bc907bddc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e7d085a4-e504-4c89-9563-7bed2ac333a3' class='xr-var-data-in' type='checkbox'><label for='data-e7d085a4-e504-4c89-9563-7bed2ac333a3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>long_name :</span></dt><dd>depth from surface to top of layer</dd></dl></div><div class='xr-var-data'><pre>array([     0.    ,   1000.    ,   2000.    ,   3000.    ,   4000.    ,
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_w</span></div><div class='xr-var-dims'>(z_w)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 1e+03 2e+03 ... 5e+05 5.25e+05</div><input id='attrs-abac96c1-47cc-4443-8140-8d469c356e59' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-abac96c1-47cc-4443-8140-8d469c356e59' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-886f1957-e691-4071-890d-bd3ee7c504d8' class='xr-var-data-in' type='checkbox'><label for='data-886f1957-e691-4071-890d-bd3ee7c504d8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>long_name :</span></dt><dd>depth from surface to top of layer</dd></dl></div><div class='xr-var-data'><pre>array([     0.    ,   1000.    ,   2000.    ,   3000.    ,   4000.    ,
          5000.    ,   6000.    ,   7000.    ,   8000.    ,   9000.    ,
         10000.    ,  11000.    ,  12000.    ,  13000.    ,  14000.    ,
         15000.    ,  16000.    ,  17019.6808,  18076.1292,  19182.1243,
@@ -2283,7 +2287,7 @@ Attributes:
        104136.8196, 117104.0188, 131809.3626, 148290.0716, 166499.2064,
        186301.4408, 207487.3978, 229803.9076, 252990.4017, 276809.8509,
        301067.0677, 325613.847 , 350344.8607, 375189.1888, 400101.1634,
-       425052.4544, 450026.0482, 475012.0091, 500004.6829, 525000.927 ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_w_bot</span></div><div class='xr-var-dims'>(z_w_bot)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1e+03 2e+03 ... 5.25e+05 5.5e+05</div><input id='attrs-4ec40802-7545-41c9-82a8-2561475eccaf' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4ec40802-7545-41c9-82a8-2561475eccaf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-23414b31-f668-4ff7-916f-6717d65b6bcf' class='xr-var-data-in' type='checkbox'><label for='data-23414b31-f668-4ff7-916f-6717d65b6bcf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>long_name :</span></dt><dd>depth from surface to bottom of layer</dd></dl></div><div class='xr-var-data'><pre>array([  1000.    ,   2000.    ,   3000.    ,   4000.    ,   5000.    ,
+       425052.4544, 450026.0482, 475012.0091, 500004.6829, 525000.927 ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_w_bot</span></div><div class='xr-var-dims'>(z_w_bot)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1e+03 2e+03 ... 5.25e+05 5.5e+05</div><input id='attrs-94b4b246-cb7e-4d35-9b7b-83051c9b6702' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-94b4b246-cb7e-4d35-9b7b-83051c9b6702' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-80ccb474-625a-43f5-8641-b420cf7c016f' class='xr-var-data-in' type='checkbox'><label for='data-80ccb474-625a-43f5-8641-b420cf7c016f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>long_name :</span></dt><dd>depth from surface to bottom of layer</dd></dl></div><div class='xr-var-data'><pre>array([  1000.    ,   2000.    ,   3000.    ,   4000.    ,   5000.    ,
          6000.    ,   7000.    ,   8000.    ,   9000.    ,  10000.    ,
         11000.    ,  12000.    ,  13000.    ,  14000.    ,  15000.    ,
         16000.    ,  17019.6808,  18076.1292,  19182.1243,  20349.9313,
@@ -2294,7 +2298,7 @@ Attributes:
        117104.0188, 131809.3626, 148290.0716, 166499.2064, 186301.4408,
        207487.3978, 229803.9076, 252990.4017, 276809.8509, 301067.0677,
        325613.847 , 350344.8607, 375189.1888, 400101.1634, 425052.4544,
-       450026.0482, 475012.0091, 500004.6829, 525000.927 , 549999.0364])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a27934f7-793d-447f-aab4-23059a76c60d' class='xr-section-summary-in' type='checkbox'  ><label for='section-a27934f7-793d-447f-aab4-23059a76c60d' class='xr-section-summary' >Data variables: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>TEMP</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-4ce29da2-da8c-484a-b3bf-a3bb4723aa9b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4ce29da2-da8c-484a-b3bf-a3bb4723aa9b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3b15a865-a6fc-46a5-875e-d669bcaf9b54' class='xr-var-data-in' type='checkbox'><label for='data-3b15a865-a6fc-46a5-875e-d669bcaf9b54' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>sea_water_temperature</dd><dt><span>units :</span></dt><dd>degrees_celsius</dd></dl></div><div class='xr-var-data'><pre>array([[[       nan,        nan,        nan, ...,        nan,
+       450026.0482, 475012.0091, 500004.6829, 525000.927 , 549999.0364])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7ed85678-7234-48fe-adf3-dceaef270db7' class='xr-section-summary-in' type='checkbox'  ><label for='section-7ed85678-7234-48fe-adf3-dceaef270db7' class='xr-section-summary' >Data variables: <span>(17)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>TEMP</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-1107e668-6a1e-4cb1-b028-331b65bc942b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1107e668-6a1e-4cb1-b028-331b65bc942b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2b9a7dae-6423-4b79-9b11-1df270f4a4ab' class='xr-var-data-in' type='checkbox'><label for='data-2b9a7dae-6423-4b79-9b11-1df270f4a4ab' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>sea_water_temperature</dd><dt><span>units :</span></dt><dd>degrees_celsius</dd></dl></div><div class='xr-var-data'><pre>array([[[       nan,        nan,        nan, ...,        nan,
                 nan,        nan],
         [       nan,        nan,        nan, ...,        nan,
                 nan,        nan],
@@ -2334,7 +2338,7 @@ Attributes:
         [       nan,        nan,        nan, ...,        nan,
                 nan,        nan],
         [       nan,        nan,        nan, ...,        nan,
-                nan,        nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SALT</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-1a86ea13-85df-4b8c-a993-2e01d320f9f2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1a86ea13-85df-4b8c-a993-2e01d320f9f2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4cead782-507b-4a05-b8cc-c2adcf0f4ab7' class='xr-var-data-in' type='checkbox'><label for='data-4cead782-507b-4a05-b8cc-c2adcf0f4ab7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>sea_water_salinity</dd><dt><span>units :</span></dt><dd>1e-3</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+                nan,        nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SALT</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-45ef2b65-b4ac-4d6a-a1bb-f001e4a1385c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-45ef2b65-b4ac-4d6a-a1bb-f001e4a1385c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f9d2ac64-eea7-4498-b694-83b6bcf38e11' class='xr-var-data-in' type='checkbox'><label for='data-f9d2ac64-eea7-4498-b694-83b6bcf38e11' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>sea_water_salinity</dd><dt><span>units :</span></dt><dd>1e-3</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
@@ -2374,7 +2378,7 @@ Attributes:
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
-               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>NO3</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-029b5571-6b63-43b0-8944-732c29360a2e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-029b5571-6b63-43b0-8944-732c29360a2e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c724eac1-d678-4516-abfb-735f8bfa0203' class='xr-var-data-in' type='checkbox'><label for='data-c724eac1-d678-4516-abfb-735f8bfa0203' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>nitrate</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>NO3</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-85783c16-b8c6-4203-90f1-67db78cf73a5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-85783c16-b8c6-4203-90f1-67db78cf73a5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8f8c95fb-11ac-42fe-9428-439322a8a781' class='xr-var-data-in' type='checkbox'><label for='data-8f8c95fb-11ac-42fe-9428-439322a8a781' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>nitrate</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
@@ -2414,7 +2418,7 @@ Attributes:
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
-               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>O2</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-5aa97d9b-ab93-47d2-936a-2e52cffec7cf' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5aa97d9b-ab93-47d2-936a-2e52cffec7cf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0180f48d-1c7d-4fd0-9a9b-b8b3be833915' class='xr-var-data-in' type='checkbox'><label for='data-0180f48d-1c7d-4fd0-9a9b-b8b3be833915' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>mole_concentration_of_dissolved_molecular_oxygen</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>O2</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-ba59e31b-0458-4b17-98ce-4d18ac4cdadb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ba59e31b-0458-4b17-98ce-4d18ac4cdadb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f903cd4d-adc8-4526-9519-cedeabb131e1' class='xr-var-data-in' type='checkbox'><label for='data-f903cd4d-adc8-4526-9519-cedeabb131e1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>mole_concentration_of_dissolved_molecular_oxygen</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
@@ -2454,7 +2458,7 @@ Attributes:
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
-               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SiO3</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-59105576-e560-4853-a1c4-b2a0dc397db8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-59105576-e560-4853-a1c4-b2a0dc397db8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c30f5826-8c9c-444f-be5e-4db890001473' class='xr-var-data-in' type='checkbox'><label for='data-c30f5826-8c9c-444f-be5e-4db890001473' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>silicate</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SiO3</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-b8248178-6b41-4511-8a21-9f02c5ffc643' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b8248178-6b41-4511-8a21-9f02c5ffc643' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b241575f-0ce4-4758-a69f-bd9cebdc6286' class='xr-var-data-in' type='checkbox'><label for='data-b241575f-0ce4-4758-a69f-bd9cebdc6286' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>silicate</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
@@ -2494,7 +2498,7 @@ Attributes:
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
-               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>PO4</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-c2eef16e-1e14-4ab7-ac6e-075853fed83b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c2eef16e-1e14-4ab7-ac6e-075853fed83b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6e424332-e09b-487c-abcb-2cc137a1789c' class='xr-var-data-in' type='checkbox'><label for='data-6e424332-e09b-487c-abcb-2cc137a1789c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>phosphate</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>PO4</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-4b9579b9-d09b-4e8f-8ffc-3bf3ce085169' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4b9579b9-d09b-4e8f-8ffc-3bf3ce085169' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-709be8f4-cb12-448d-976d-083c5966edaa' class='xr-var-data-in' type='checkbox'><label for='data-709be8f4-cb12-448d-976d-083c5966edaa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>phosphate</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
@@ -2534,7 +2538,7 @@ Attributes:
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
-               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>AOU</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-86707650-53a3-4b5d-b24e-4b2ccf101bb5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-86707650-53a3-4b5d-b24e-4b2ccf101bb5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3bd1abc5-ed55-4ac1-b073-86a7c639d427' class='xr-var-data-in' type='checkbox'><label for='data-3bd1abc5-ed55-4ac1-b073-86a7c639d427' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Apparent_Oxygen_Utilization</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
+               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>AOU</span></div><div class='xr-var-dims'>(z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>nan nan nan nan ... nan nan nan nan</div><input id='attrs-30fd3373-c89f-43ac-89f0-3a0fd1cf231e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-30fd3373-c89f-43ac-89f0-3a0fd1cf231e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-586cd321-eed5-4483-bb1d-b4533e8072e7' class='xr-var-data-in' type='checkbox'><label for='data-586cd321-eed5-4483-bb1d-b4533e8072e7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Apparent_Oxygen_Utilization</dd><dt><span>units :</span></dt><dd>micromoles_per_kilogram</dd></dl></div><div class='xr-var-data'><pre>array([[[      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
@@ -2574,7 +2578,7 @@ Attributes:
         [      nan,       nan,       nan, ...,       nan,       nan,
                nan],
         [      nan,       nan,       nan, ...,       nan,       nan,
-               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-79.22 -79.22 ... 72.19 72.19</div><input id='attrs-660b9fb0-5346-4849-a405-2caac4939ddc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-660b9fb0-5346-4849-a405-2caac4939ddc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-95347470-3269-47c7-8d19-81113c0026cb' class='xr-var-data-in' type='checkbox'><label for='data-95347470-3269-47c7-8d19-81113c0026cb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>T-grid latitude</dd></dl></div><div class='xr-var-data'><pre>array([[-79.22052261, -79.22052261, -79.22052261, ..., -79.22052261,
+               nan]]], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-79.22 -79.22 ... 72.19 72.19</div><input id='attrs-59bd3396-3090-4487-bc11-819796a50b71' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-59bd3396-3090-4487-bc11-819796a50b71' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-61989034-dca3-40d0-baac-985cc31003e9' class='xr-var-data-in' type='checkbox'><label for='data-61989034-dca3-40d0-baac-985cc31003e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>T-grid latitude</dd></dl></div><div class='xr-var-data'><pre>array([[-79.22052261, -79.22052261, -79.22052261, ..., -79.22052261,
         -79.22052261, -79.22052261],
        [-78.68630626, -78.68630626, -78.68630626, ..., -78.68630626,
         -78.68630626, -78.68630626],
@@ -2586,7 +2590,7 @@ Attributes:
        [ 71.73524335,  71.73881845,  71.74596231, ...,  71.74596231,
          71.73881845,  71.73524335],
        [ 72.18597561,  72.18933231,  72.19603941, ...,  72.19603941,
-         72.18933231,  72.18597562]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>320.6 321.7 322.8 ... 319.4 319.8</div><input id='attrs-378afdb4-28ec-40ce-a5d1-e0fd9ba0efb7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-378afdb4-28ec-40ce-a5d1-e0fd9ba0efb7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9f536ecd-9ed5-4a6b-98bf-cb3bd84cf6ca' class='xr-var-data-in' type='checkbox'><label for='data-9f536ecd-9ed5-4a6b-98bf-cb3bd84cf6ca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>T-grid longitude</dd></dl></div><div class='xr-var-data'><pre>array([[320.56250892, 321.68750895, 322.81250898, ..., 317.18750883,
+         72.18933231,  72.18597562]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>320.6 321.7 322.8 ... 319.4 319.8</div><input id='attrs-8c1f0647-29db-4dd5-a4b1-18a24d143d72' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8c1f0647-29db-4dd5-a4b1-18a24d143d72' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-37ced347-a3cf-4ef7-8c9e-4dd373713716' class='xr-var-data-in' type='checkbox'><label for='data-37ced347-a3cf-4ef7-8c9e-4dd373713716' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>T-grid longitude</dd></dl></div><div class='xr-var-data'><pre>array([[320.56250892, 321.68750895, 322.81250898, ..., 317.18750883,
         318.31250886, 319.43750889],
        [320.56250892, 321.68750895, 322.81250898, ..., 317.18750883,
         318.31250886, 319.43750889],
@@ -2598,7 +2602,7 @@ Attributes:
        [320.23459477, 320.70358949, 321.17207442, ..., 318.82794339,
         319.29642832, 319.76542721],
        [320.21650899, 320.6493303 , 321.08163473, ..., 318.91838308,
-        319.3506875 , 319.78351267]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ULAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-78.95 -78.95 ... 72.41 72.41</div><input id='attrs-c4f2efd1-c110-4cbe-aca6-15fc5e0f94f0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c4f2efd1-c110-4cbe-aca6-15fc5e0f94f0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-adb04da3-7b45-46e3-a4a8-adc6f3be259b' class='xr-var-data-in' type='checkbox'><label for='data-adb04da3-7b45-46e3-a4a8-adc6f3be259b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>U-grid latitude</dd></dl></div><div class='xr-var-data'><pre>array([[-78.95289509, -78.95289509, -78.95289509, ..., -78.95289509,
+        319.3506875 , 319.78351267]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ULAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-78.95 -78.95 ... 72.41 72.41</div><input id='attrs-5f196b7c-ab1e-4037-a99b-ff4513e1848c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5f196b7c-ab1e-4037-a99b-ff4513e1848c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-dd6dac15-b2a9-4a85-9f9e-dfd1f4d4ee2f' class='xr-var-data-in' type='checkbox'><label for='data-dd6dac15-b2a9-4a85-9f9e-dfd1f4d4ee2f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>long_name :</span></dt><dd>U-grid latitude</dd></dl></div><div class='xr-var-data'><pre>array([[-78.95289509, -78.95289509, -78.95289509, ..., -78.95289509,
         -78.95289509, -78.95289509],
        [-78.41865507, -78.41865507, -78.41865507, ..., -78.41865507,
         -78.41865507, -78.41865507],
@@ -2610,7 +2614,7 @@ Attributes:
        [ 71.95983548,  71.96504258,  71.97371054, ...,  71.96504258,
          71.95983548,  71.95809872],
        [ 72.4135549 ,  72.41841155,  72.42649554, ...,  72.41841155,
-         72.4135549 ,  72.41193498]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ULONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>321.1 322.3 323.4 ... 319.6 320.0</div><input id='attrs-fb43d4f7-a77b-413a-adc9-78fa0ce37214' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fb43d4f7-a77b-413a-adc9-78fa0ce37214' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-54cc98dd-733c-45a1-badf-71bbf33965f1' class='xr-var-data-in' type='checkbox'><label for='data-54cc98dd-733c-45a1-badf-71bbf33965f1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>U-grid longitude</dd></dl></div><div class='xr-var-data'><pre>array([[321.12500894, 322.25000897, 323.375009  , ..., 317.75000884,
+         72.4135549 ,  72.41193498]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>ULONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>321.1 322.3 323.4 ... 319.6 320.0</div><input id='attrs-5fb6111b-3edb-431d-b0a9-302e15cbf376' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5fb6111b-3edb-431d-b0a9-302e15cbf376' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-70cf9e86-0a49-4ba9-aa48-a49e95574ddd' class='xr-var-data-in' type='checkbox'><label for='data-70cf9e86-0a49-4ba9-aa48-a49e95574ddd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>long_name :</span></dt><dd>U-grid longitude</dd></dl></div><div class='xr-var-data'><pre>array([[321.12500894, 322.25000897, 323.375009  , ..., 317.75000884,
         318.87500887, 320.0000089 ],
        [321.12500894, 322.25000897, 323.375009  , ..., 317.75000884,
         318.87500887, 320.0000089 ],
@@ -2622,7 +2626,7 @@ Attributes:
        [320.45160767, 320.90286181, 321.35342745, ..., 319.097156  ,
         319.54841014, 320.00001293],
        [320.41397858, 320.82760085, 321.24052915, ..., 319.17241696,
-        319.58603923, 320.00001259]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DXT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2.339e+06 2.339e+06 ... 1.473e+06</div><input id='attrs-b98358bc-c6c9-41e0-9fa5-3920d50d152f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b98358bc-c6c9-41e0-9fa5-3920d50d152f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7b1c9cd0-349e-4981-b6ba-014823e6ce6e' class='xr-var-data-in' type='checkbox'><label for='data-7b1c9cd0-349e-4981-b6ba-014823e6ce6e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>long_name :</span></dt><dd>x-spacing centered at T points</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[2339452.22235193, 2339452.22235193, 2339452.22235193, ...,
+        319.58603923, 320.00001259]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DXT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>2.339e+06 2.339e+06 ... 1.473e+06</div><input id='attrs-d77164cc-f199-4abf-9315-74c9736c5b59' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d77164cc-f199-4abf-9315-74c9736c5b59' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-03c7bc06-2a74-4a94-99de-b08d0707a79a' class='xr-var-data-in' type='checkbox'><label for='data-03c7bc06-2a74-4a94-99de-b08d0707a79a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>long_name :</span></dt><dd>x-spacing centered at T points</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[2339452.22235193, 2339452.22235193, 2339452.22235193, ...,
         2339452.22235193, 2339452.22235193, 2339452.22235193],
        [2453808.06658755, 2453808.06658755, 2453808.06658755, ...,
         2453808.06658755, 2453808.06658755, 2453808.06658755],
@@ -2634,7 +2638,7 @@ Attributes:
        [1635014.87507127, 1634497.02506524, 1633433.44903024, ...,
         1633433.44903024, 1634497.02506524, 1635014.87507127],
        [1472954.03210867, 1472467.18486634, 1471468.46623378, ...,
-        1471468.46623378, 1472467.18486634, 1472954.03210867]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DYT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.94e+06 5.94e+06 ... 5.046e+06</div><input id='attrs-21133ea0-1948-4977-ae40-1071e73f7970' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-21133ea0-1948-4977-ae40-1071e73f7970' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-60236875-1a82-4a44-9e0c-7d17f58e342e' class='xr-var-data-in' type='checkbox'><label for='data-60236875-1a82-4a44-9e0c-7d17f58e342e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>long_name :</span></dt><dd>y-spacing centered at T points</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[5939545.50164216, 5939545.50164216, 5939545.50164216, ...,
+        1471468.46623378, 1472467.18486634, 1472954.03210867]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>DYT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>5.94e+06 5.94e+06 ... 5.046e+06</div><input id='attrs-ebf7be9e-aaa2-4f74-9176-3efcbd84310f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ebf7be9e-aaa2-4f74-9176-3efcbd84310f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-17c33887-8c58-4f8f-b7f4-41a173f0a80d' class='xr-var-data-in' type='checkbox'><label for='data-17c33887-8c58-4f8f-b7f4-41a173f0a80d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>long_name :</span></dt><dd>y-spacing centered at T points</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[5939545.50164216, 5939545.50164216, 5939545.50164216, ...,
         5939545.50164216, 5939545.50164216, 5939545.50164216],
        [5939545.50164216, 5939545.50164216, 5939545.50164216, ...,
         5939545.50164216, 5939545.50164216, 5939545.50164216],
@@ -2646,7 +2650,7 @@ Attributes:
        [4978532.2566533 , 4979215.61944315, 4980580.74758446, ...,
         4980580.74758446, 4979215.61944315, 4978532.2566533 ],
        [5045798.85436364, 5046446.74588877, 5047740.96078377, ...,
-        5047740.96078377, 5046446.74588877, 5045798.85436364]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TAREA</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.39e+13 1.39e+13 ... 7.432e+12</div><input id='attrs-358d59d1-dab5-4fbe-88fb-d18cc016079e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-358d59d1-dab5-4fbe-88fb-d18cc016079e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-246ad4c8-bbe8-468f-8cf9-28bb5e077c63' class='xr-var-data-in' type='checkbox'><label for='data-246ad4c8-bbe8-468f-8cf9-28bb5e077c63' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm^2</dd><dt><span>long_name :</span></dt><dd>area of T cells</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[1.38952829e+13, 1.38952829e+13, 1.38952829e+13, ...,
+        5047740.96078377, 5046446.74588877, 5045798.85436364]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TAREA</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.39e+13 1.39e+13 ... 7.432e+12</div><input id='attrs-18a145f3-22fb-4019-a7b4-8b271c6f323b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-18a145f3-22fb-4019-a7b4-8b271c6f323b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3d23db49-f749-4454-a60a-886b2c3dd664' class='xr-var-data-in' type='checkbox'><label for='data-3d23db49-f749-4454-a60a-886b2c3dd664' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm^2</dd><dt><span>long_name :</span></dt><dd>area of T cells</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[1.38952829e+13, 1.38952829e+13, 1.38952829e+13, ...,
         1.38952829e+13, 1.38952829e+13, 1.38952829e+13],
        [1.45745047e+13, 1.45745047e+13, 1.45745047e+13, ...,
         1.45745047e+13, 1.45745047e+13, 1.45745047e+13],
@@ -2658,19 +2662,19 @@ Attributes:
        [8.13997430e+12, 8.13851312e+12, 8.13544719e+12, ...,
         8.13544719e+12, 8.13851312e+12, 8.13997430e+12],
        [7.43222977e+12, 7.43072723e+12, 7.42759165e+12, ...,
-        7.42759165e+12, 7.43072723e+12, 7.43222977e+12]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>KMT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0</div><input id='attrs-2772ab0b-ec71-4cc4-a9b9-80297118f09e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2772ab0b-ec71-4cc4-a9b9-80297118f09e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b6e99fc2-8e54-4058-9cb3-0492665bd160' class='xr-var-data-in' type='checkbox'><label for='data-b6e99fc2-8e54-4058-9cb3-0492665bd160' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>k Index of Deepest Grid Cell on T Grid</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[ 0,  0,  0, ...,  0,  0,  0],
+        7.42759165e+12, 7.43072723e+12, 7.43222977e+12]])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>KMT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0</div><input id='attrs-4ee182b8-a8a1-4609-9b55-95a396aa131b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4ee182b8-a8a1-4609-9b55-95a396aa131b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3547d1f-6a98-42f6-9ff4-e0629f7e5710' class='xr-var-data-in' type='checkbox'><label for='data-a3547d1f-6a98-42f6-9ff4-e0629f7e5710' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>k Index of Deepest Grid Cell on T Grid</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[ 0,  0,  0, ...,  0,  0,  0],
        [ 0,  0,  0, ...,  0,  0,  0],
        [38, 38, 38, ...,  0,  0,  0],
        ...,
        [ 0,  0,  0, ...,  0,  0,  0],
        [ 0,  0,  0, ...,  0,  0,  0],
-       [ 0,  0,  0, ...,  0,  0,  0]], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>REGION_MASK</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0</div><input id='attrs-8efa510e-d89b-44bc-b470-8ffc5943370d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8efa510e-d89b-44bc-b470-8ffc5943370d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c6b5bc9d-8562-45a1-8c36-f72c6930e1b0' class='xr-var-data-in' type='checkbox'><label for='data-c6b5bc9d-8562-45a1-8c36-f72c6930e1b0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>basin index number (signed integers)</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[0, 0, 0, ..., 0, 0, 0],
+       [ 0,  0,  0, ...,  0,  0,  0]], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>REGION_MASK</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>int32</div><div class='xr-var-preview xr-preview'>0 0 0 0 0 0 0 0 ... 0 0 0 0 0 0 0 0</div><input id='attrs-ff1353f4-dc78-4fb2-84ec-1d2ca61322c0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ff1353f4-dc78-4fb2-84ec-1d2ca61322c0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7c3b2a74-392a-47d1-a8c0-18fa46b1f9c3' class='xr-var-data-in' type='checkbox'><label for='data-7c3b2a74-392a-47d1-a8c0-18fa46b1f9c3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>basin index number (signed integers)</dd><dt><span>coordinates :</span></dt><dd>TLONG TLAT</dd></dl></div><div class='xr-var-data'><pre>array([[0, 0, 0, ..., 0, 0, 0],
        [0, 0, 0, ..., 0, 0, 0],
        [1, 1, 1, ..., 0, 0, 0],
        ...,
        [0, 0, 0, ..., 0, 0, 0],
        [0, 0, 0, ..., 0, 0, 0],
-       [0, 0, 0, ..., 0, 0, 0]], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>dz</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1e+03 1e+03 ... 2.5e+04 2.5e+04</div><input id='attrs-aa398935-8b5a-4ba6-8cda-ae608dcdbba1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aa398935-8b5a-4ba6-8cda-ae608dcdbba1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-69252fb8-a2d2-4618-a234-066dc5c69253' class='xr-var-data-in' type='checkbox'><label for='data-69252fb8-a2d2-4618-a234-066dc5c69253' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>long_name :</span></dt><dd>thickness of layer k</dd></dl></div><div class='xr-var-data'><pre>array([ 1000.    ,  1000.    ,  1000.    ,  1000.    ,  1000.    ,
+       [0, 0, 0, ..., 0, 0, 0]], dtype=int32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>dz</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1e+03 1e+03 ... 2.5e+04 2.5e+04</div><input id='attrs-24154966-5bd1-4501-8d8c-8ea519af3d95' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-24154966-5bd1-4501-8d8c-8ea519af3d95' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-12f185f6-4914-4584-b883-3fc0678d763c' class='xr-var-data-in' type='checkbox'><label for='data-12f185f6-4914-4584-b883-3fc0678d763c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>units :</span></dt><dd>cm</dd><dt><span>long_name :</span></dt><dd>thickness of layer k</dd></dl></div><div class='xr-var-data'><pre>array([ 1000.    ,  1000.    ,  1000.    ,  1000.    ,  1000.    ,
         1000.    ,  1000.    ,  1000.    ,  1000.    ,  1000.    ,
         1000.    ,  1000.    ,  1000.    ,  1000.    ,  1000.    ,
         1000.    ,  1019.6808,  1056.4484,  1105.9951,  1167.807 ,
@@ -2681,7 +2685,7 @@ Attributes:
        12967.1992, 14705.3438, 16480.709 , 18209.1348, 19802.2344,
        21185.957 , 22316.5098, 23186.4941, 23819.4492, 24257.2168,
        24546.7793, 24731.0137, 24844.3281, 24911.9746, 24951.291 ,
-       24973.5938, 24985.9609, 24992.6738, 24996.2441, 24998.1094])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-8a7e0d21-7902-49e1-b5bf-3554b17e5614' class='xr-section-summary-in' type='checkbox'  ><label for='section-8a7e0d21-7902-49e1-b5bf-3554b17e5614' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>z_t</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d05822da-c014-423d-8574-93a143877f2c' class='xr-index-data-in' type='checkbox'/><label for='index-d05822da-c014-423d-8574-93a143877f2c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([          500.0,          1500.0,          2500.0,          3500.0,
+       24973.5938, 24985.9609, 24992.6738, 24996.2441, 24998.1094])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-299eb7b1-a79b-43f5-85ca-6cd9e5970e45' class='xr-section-summary-in' type='checkbox'  ><label for='section-299eb7b1-a79b-43f5-85ca-6cd9e5970e45' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>z_t</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-fdc49c01-fecc-44d2-9806-20ff92e52f98' class='xr-index-data-in' type='checkbox'/><label for='index-fdc49c01-fecc-44d2-9806-20ff92e52f98' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([          500.0,          1500.0,          2500.0,          3500.0,
                 4500.0,          5500.0,          6500.0,          7500.0,
                 8500.0,          9500.0,         10500.0,         11500.0,
                12500.0,         13500.0,         14500.0,         15500.0,
@@ -2696,7 +2700,7 @@ Attributes:
             264900.125,    288938.46875,    313340.46875,    337979.34375,
           362767.03125,     387645.1875,     412576.8125,       437539.25,
           462519.03125,    487508.34375,     512502.8125,        537500.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;z_t&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_w</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-0a2de90a-3e2c-465c-81a0-f54f2f5752e8' class='xr-index-data-in' type='checkbox'/><label for='index-0a2de90a-3e2c-465c-81a0-f54f2f5752e8' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               0.0,             1000.0,             2000.0,
+      dtype=&#x27;float32&#x27;, name=&#x27;z_t&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_w</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-d3cc2805-d9a9-4922-b155-a98dc17b71b7' class='xr-index-data-in' type='checkbox'/><label for='index-d3cc2805-d9a9-4922-b155-a98dc17b71b7' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               0.0,             1000.0,             2000.0,
                    3000.0,             4000.0,             5000.0,
                    6000.0,             7000.0,             8000.0,
                    9000.0,            10000.0,            11000.0,
@@ -2716,7 +2720,7 @@ Attributes:
        325613.84699999995, 350344.86069999996, 375189.18879999995,
        400101.16339999996,        425052.4544, 450026.04819999996,
        475012.00909999997, 500004.68289999996,  525000.9269999999],
-      dtype=&#x27;float64&#x27;, name=&#x27;z_w&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_w_bot</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8cd21954-a7b7-4e02-905f-c72d938dc16c' class='xr-index-data-in' type='checkbox'/><label for='index-8cd21954-a7b7-4e02-905f-c72d938dc16c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([            1000.0,             2000.0,             3000.0,
+      dtype=&#x27;float64&#x27;, name=&#x27;z_w&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_w_bot</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-3f9bd3e2-b3c9-4624-a9bf-c195f1ef2394' class='xr-index-data-in' type='checkbox'/><label for='index-3f9bd3e2-b3c9-4624-a9bf-c195f1ef2394' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([            1000.0,             2000.0,             3000.0,
                    4000.0,             5000.0,             6000.0,
                    7000.0,             8000.0,             9000.0,
                   10000.0,            11000.0,            12000.0,
@@ -2736,23 +2740,13 @@ Attributes:
        350344.86069999996, 375189.18879999995, 400101.16339999996,
               425052.4544, 450026.04819999996, 475012.00909999997,
        500004.68289999996,  525000.9269999999,  549999.0363999999],
-      dtype=&#x27;float64&#x27;, name=&#x27;z_w_bot&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-594c1158-02af-40a7-a1da-eeb4bafd2166' class='xr-section-summary-in' type='checkbox'  checked><label for='section-594c1158-02af-40a7-a1da-eeb4bafd2166' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>history :</span></dt><dd>created by kristen krumhardt on 2019-10-25</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float64&#x27;, name=&#x27;z_w_bot&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6723ea52-6791-4c4a-8eb5-0e193d95ffff' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6723ea52-6791-4c4a-8eb5-0e193d95ffff' class='xr-section-summary' >Attributes: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>history :</span></dt><dd>created by kristen krumhardt on 2019-10-25</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Now that we’re doing more involved calculations, we’re going to just take a mean over a couple years (2010-2011) to make the computational load a bit lighter. For a more accurate analysis, we’d want to include more years than this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_annual_subset</span> <span class="o">=</span> <span class="n">ds_annual</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="p">[</span><span class="mi">2010</span><span class="p">,</span><span class="mi">2011</span><span class="p">])</span>
 <span class="n">ds_mean</span> <span class="o">=</span> <span class="n">ds_annual_subset</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/ocean-bgc-cookbook-dev/lib/python3.12/site-packages/distributed/client.py:3362: UserWarning: Sending large graph of size 20.16 MiB.
-This may cause some slowdown.
-Consider loading the data with Dask directly
- or using futures or delayed objects to embed the data into the graph without repetition.
-See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask for more information.
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -2845,7 +2839,7 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/70d91cdd4e51ddefea849b093d04e6b38335f32c8889502b14741888a7a04c82.png" src="../_images/70d91cdd4e51ddefea849b093d04e6b38335f32c8889502b14741888a7a04c82.png" />
+<img alt="../_images/480d225123c5224795c24cbf66a1f9a09deb2202f1c2f01a3046bda88d8b1fe7.png" src="../_images/480d225123c5224795c24cbf66a1f9a09deb2202f1c2f01a3046bda88d8b1fe7.png" />
 </div>
 </div>
 </section>
@@ -2926,7 +2920,7 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f4d96310311781c0bb6bfaad0b02b32e5e99065543fff76a7ef1e6cdaea01aca.png" src="../_images/f4d96310311781c0bb6bfaad0b02b32e5e99065543fff76a7ef1e6cdaea01aca.png" />
+<img alt="../_images/26a6c914aa338f27d7dd0ddf571135b87102dfabb72d24cf4e79983f195af18f.png" src="../_images/26a6c914aa338f27d7dd0ddf571135b87102dfabb72d24cf4e79983f195af18f.png" />
 </div>
 </div>
 </section>
@@ -2936,7 +2930,7 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 <p>Let’s write a function to take a global mean of the variables we’re interested in, so that we can look at some depth profiles rather than maps. Also remember that we already took a mean over the whole time range (and the WOA dataset already had this mean taken), so this is a mean in time as well. Like the above maps, we also plot a bias panel to directly compare the difference between the datasets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">global_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds_grid</span><span class="p">,</span> <span class="n">compute_vars</span><span class="p">,</span> <span class="n">include_ms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">global_mean</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">ds_grid</span><span class="p">,</span> <span class="n">compute_vars</span><span class="p">,</span> <span class="n">include_ms</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the global mean on a POP dataset. </span>
 <span class="sd">    Return computed quantity in conventional units.</span>
@@ -2975,38 +2969,10 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2651/680694341.py:19: DeprecationWarning: __array__ implementation doesn&#39;t accept a copy keyword, so passing copy=False failed. __array__ must implement &#39;dtype&#39; and &#39;copy&#39; keyword arguments.
-  area_depth[:,:,z] = ds_grid.TAREA.where(ds_grid.REGION_MASK &gt; 0).where(ds[var].isel(z_t=z) &gt; 0)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2651/680694341.py:19: DeprecationWarning: __array__ implementation doesn&#39;t accept a copy keyword, so passing copy=False failed. __array__ must implement &#39;dtype&#39; and &#39;copy&#39; keyword arguments.
-  area_depth[:,:,z] = ds_grid.TAREA.where(ds_grid.REGION_MASK &gt; 0).where(ds[var].isel(z_t=z) &gt; 0)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2651/680694341.py:19: DeprecationWarning: __array__ implementation doesn&#39;t accept a copy keyword, so passing copy=False failed. __array__ must implement &#39;dtype&#39; and &#39;copy&#39; keyword arguments.
-  area_depth[:,:,z] = ds_grid.TAREA.where(ds_grid.REGION_MASK &gt; 0).where(ds[var].isel(z_t=z) &gt; 0)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_glb_woa</span> <span class="o">=</span> <span class="n">global_mean</span><span class="p">(</span><span class="n">ds_woa</span><span class="p">,</span> <span class="n">ds_grid</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;NO3&#39;</span><span class="p">,</span><span class="s1">&#39;PO4&#39;</span><span class="p">,</span><span class="s1">&#39;SiO3&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2651/680694341.py:19: DeprecationWarning: __array__ implementation doesn&#39;t accept a copy keyword, so passing copy=False failed. __array__ must implement &#39;dtype&#39; and &#39;copy&#39; keyword arguments.
-  area_depth[:,:,z] = ds_grid.TAREA.where(ds_grid.REGION_MASK &gt; 0).where(ds[var].isel(z_t=z) &gt; 0)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2651/680694341.py:19: DeprecationWarning: __array__ implementation doesn&#39;t accept a copy keyword, so passing copy=False failed. __array__ must implement &#39;dtype&#39; and &#39;copy&#39; keyword arguments.
-  area_depth[:,:,z] = ds_grid.TAREA.where(ds_grid.REGION_MASK &gt; 0).where(ds[var].isel(z_t=z) &gt; 0)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2651/680694341.py:19: DeprecationWarning: __array__ implementation doesn&#39;t accept a copy keyword, so passing copy=False failed. __array__ must implement &#39;dtype&#39; and &#39;copy&#39; keyword arguments.
-  area_depth[:,:,z] = ds_grid.TAREA.where(ds_grid.REGION_MASK &gt; 0).where(ds[var].isel(z_t=z) &gt; 0)
 </pre></div>
 </div>
 </div>
@@ -3080,7 +3046,7 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62694116e54a73063f550beb6f06311ec3afd5032cfa79a79a0b0bdbd4975eb1.png" src="../_images/62694116e54a73063f550beb6f06311ec3afd5032cfa79a79a0b0bdbd4975eb1.png" />
+<img alt="../_images/1f18d445780b66056be16024309fcdba063824927b1d1eb3bfd2ecca2a963833.png" src="../_images/1f18d445780b66056be16024309fcdba063824927b1d1eb3bfd2ecca2a963833.png" />
 </div>
 </div>
 <p>And close the Dask cluster we spun up at the beginning.</p>
@@ -3091,64 +3057,64 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,054 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,574 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,055 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,575 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,055 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,576 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,056 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,577 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,057 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,578 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,058 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,578 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,059 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,579 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,061 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,580 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,062 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,581 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,065 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,581 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,066 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,582 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,073 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,583 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,077 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,583 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,080 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,584 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,081 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,591 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,085 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,592 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,093 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,593 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,093 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,594 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,101 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,594 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-08-07 22:20:01,112 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-09 19:34:30,595 - distributed.nanny - WARNING - Worker process still alive after 4.0 seconds, killing
 </pre></div>
 </div>
 </div>
@@ -3444,24 +3410,16 @@ See also https://docs.dask.org/en/stable/best-practices.html#load-data-with-dask
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -3499,7 +3457,7 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 7 August 2024.
+  Last updated on 9 January 2025.
   <br/>
 </p>
   </div>
@@ -3516,8 +3474,8 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
   </div>
     
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
      
@@ -3553,7 +3511,7 @@ By the <a href="https://projectpythia.org/">Project Pythia</a> Community
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 7 August 2024.
+          Last updated on 9 January 2025.
         </p>
       </div>
     </div>
