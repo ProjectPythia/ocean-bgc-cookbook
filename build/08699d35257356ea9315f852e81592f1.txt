@@ -1,40 +1,12 @@
-2025-08-15 01:59:40,999 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fdcea158520>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:40,971 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
-Dimensions:           (time: 120, nlat: 384, nlon: 320)
+2025-08-17 02:05:22,539 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
+Dimensions:                       (time: 120, nlat: 384, nlon: 320)
 Coordinates:
-    TLAT              (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-    TLONG             (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-  * time              (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 1...
+    TLAT                          (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+    TLONG                         (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+  * time                          (time) object 960B 2010-01-16 12:00:00 ... ...
 Dimensions without coordinates: nlat, nlon
 Data variables:
-    photoC_diat_zint  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
+    cocco_P_lim_Cweight_avg_100m  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -62,7 +34,7 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:40,988 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fe4d3edde40>>.
+2025-08-17 02:05:22,568 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f8969a016c0>>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -90,7 +62,7 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,028 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fdcea9e3c40>>.
+2025-08-17 02:05:22,582 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fddd6053ee0>>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -118,99 +90,7 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:40,973 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
-Dimensions:                      (time: 120, nlat: 384, nlon: 320)
-Coordinates:
-    TLAT                         (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-    TLONG                        (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-  * time                         (time) object 960B 2010-01-16 12:00:00 ... 2...
-Dimensions without coordinates: nlat, nlon
-Data variables:
-    diat_P_lim_Cweight_avg_100m  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,060 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fde25252b00>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,071 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fdce9f490c0>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,052 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 4GB
+2025-08-17 02:05:22,590 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 4GB
 Dimensions:  (time: 120, z_t: 60, nlat: 384, nlon: 320)
 Coordinates:
     TLAT     (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
@@ -247,16 +127,43 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,047 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 887MB
-Dimensions:   (time: 120, z_t_150m: 15, nlat: 384, nlon: 320)
+2025-08-17 02:05:22,618 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f8969c288e0>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
+    raise TypeError("h5py objects cannot be pickled")
+TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,680 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
+Dimensions:           (time: 120, nlat: 384, nlon: 320)
 Coordinates:
-    TLAT      (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-    TLONG     (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-  * time      (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 12:00:00
-  * z_t_150m  (z_t_150m) float32 60B 500.0 1.5e+03 2.5e+03 ... 1.35e+04 1.45e+04
+    TLAT              (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+    TLONG             (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+  * time              (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 1...
 Dimensions without coordinates: nlat, nlon
 Data variables:
-    diatC     (time, z_t_150m, nlat, nlon) float32 885MB dask.array<chunksize=(40, 5, 128, 107), meta=np.ndarray>.
+    photoC_diat_zint  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -284,7 +191,7 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,122 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fde24d4a740>>.
+2025-08-17 02:05:22,685 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f896a107dc0>>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -312,71 +219,16 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,136 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fe4d3565660>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,121 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f2ef676f340>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,133 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
-Dimensions:          (time: 120, nlat: 384, nlon: 320)
+2025-08-17 02:05:22,613 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 4GB
+Dimensions:  (time: 120, z_t: 60, nlat: 384, nlon: 320)
 Coordinates:
-    TLAT             (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-    TLONG            (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-  * time             (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 12...
+    TLAT     (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+    TLONG    (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+  * time     (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 12:00:00
+  * z_t      (z_t) float32 240B 500.0 1.5e+03 2.5e+03 ... 5.125e+05 5.375e+05
 Dimensions without coordinates: nlat, nlon
 Data variables:
-    diaz_P_lim_surf  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
+    Fe       (time, z_t, nlat, nlon) float32 4GB dask.array<chunksize=(30, 15, 96, 80), meta=np.ndarray>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -404,71 +256,16 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,185 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f2ef7267340>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,172 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fe4d3688a60>>.
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
-    result = pickle.dumps(x, **dump_kwargs)
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
-    pickler.dump(x)
-    ~~~~~~~~~~~~^^^
-TypeError: cannot pickle 'module' object
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
-    result = cloudpickle.dumps(x, **dump_kwargs)
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
-    cp.dump(obj)
-    ~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
-    return super().dump(obj)
-           ~~~~~~~~~~~~^^^^^
-  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
-    raise TypeError("h5py objects cannot be pickled")
-TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,161 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
-Dimensions:        (time: 120, nlat: 384, nlon: 320)
+2025-08-17 02:05:22,689 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 4GB
+Dimensions:  (time: 120, z_t: 60, nlat: 384, nlon: 320)
 Coordinates:
-    TLAT           (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-    TLONG          (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-  * time           (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 12:0...
+    TLAT     (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+    TLONG    (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
+  * time     (time) object 960B 2010-01-16 12:00:00 ... 2019-12-16 12:00:00
+  * z_t      (z_t) float32 240B 500.0 1.5e+03 2.5e+03 ... 5.125e+05 5.375e+05
 Dimensions without coordinates: nlat, nlon
 Data variables:
-    sp_N_lim_surf  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
+    NO3      (time, z_t, nlat, nlon) float32 4GB dask.array<chunksize=(30, 15, 96, 80), meta=np.ndarray>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -496,15 +293,7 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
-2025-08-15 01:59:41,197 - distributed.protocol.pickle - ERROR - Failed to serialize <xarray.Dataset> Size: 61MB
-Dimensions:                       (time: 120, nlat: 384, nlon: 320)
-Coordinates:
-    TLAT                          (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-    TLONG                         (nlat, nlon) float64 983kB dask.array<chunksize=(384, 320), meta=np.ndarray>
-  * time                          (time) object 960B 2010-01-16 12:00:00 ... ...
-Dimensions without coordinates: nlat, nlon
-Data variables:
-    cocco_N_lim_Cweight_avg_100m  (time, nlat, nlon) float32 59MB dask.array<chunksize=(60, 192, 160), meta=np.ndarray>.
+2025-08-17 02:05:22,647 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fddd5892500>>.
 Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
     result = pickle.dumps(x, **dump_kwargs)
@@ -532,3 +321,166 @@ Traceback (most recent call last):
   File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
     raise TypeError("h5py objects cannot be pickled")
 TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,679 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fd521a5fd60>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
+    raise TypeError("h5py objects cannot be pickled")
+TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,693 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f8969c95960>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
+    raise TypeError("h5py objects cannot be pickled")
+TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,698 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fddd4454640>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
+    raise TypeError("h5py objects cannot be pickled")
+TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,762 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7f8969f89f60>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
+    raise TypeError("h5py objects cannot be pickled")
+TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,756 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fd52134d8a0>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1303, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/h5py/_hl/base.py", line 369, in __getnewargs__
+    raise TypeError("h5py objects cannot be pickled")
+TypeError: h5py objects cannot be pickled
+2025-08-17 02:05:22,748 - distributed.protocol.pickle - ERROR - Failed to serialize <bound method H5NetCDFStore.close of <xarray.backends.h5netcdf_.H5NetCDFStore object at 0x7fddd5991600>>.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+    ~~~~~~~~~~~~^^^
+TypeError: cannot pickle 'module' object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1537, in dumps
+    cp.dump(obj)
+    ~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/ocean-bgc-cookbook-dev/lib/python3.13/site-packages/
