@@ -13,9 +13,7 @@
 </symbol>
 </defs>
 </svg>
-<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
- *
- */
+<style>/* CSS stylesheet for displaying xarray objects in notebooks */
 
 :root {
   --xr-font-color0: var(
@@ -94,6 +92,7 @@ body.vscode-dark {
   display: block !important;
   min-width: 300px;
   max-width: 700px;
+  line-height: 1.6;
 }
 
 .xr-text-repr-fallback {
@@ -116,11 +115,18 @@ body.vscode-dark {
 }
 
 .xr-obj-type,
-.xr-array-name {
+.xr-obj-name,
+.xr-group-name {
   margin-left: 2px;
   margin-right: 10px;
 }
 
+.xr-group-name::before {
+  content: "📁";
+  padding-right: 0.3em;
+}
+
+.xr-group-name,
 .xr-obj-type {
   color: var(--xr-font-color2);
 }
@@ -129,6 +135,8 @@ body.vscode-dark {
   padding-left: 0 !important;
   display: grid;
   grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 .xr-section-item {
@@ -139,6 +147,7 @@ body.vscode-dark {
   display: inline-block;
   opacity: 0;
   height: 0;
+  margin: 0;
 }
 
 .xr-section-item input + label {
@@ -197,7 +206,6 @@ body.vscode-dark {
 .xr-section-summary,
 .xr-section-inline-details {
   padding-top: 4px;
-  padding-bottom: 4px;
 }
 
 .xr-section-inline-details {
@@ -207,11 +215,38 @@ body.vscode-dark {
 .xr-section-details {
   display: none;
   grid-column: 1 / -1;
+  margin-top: 4px;
   margin-bottom: 5px;
 }
 
 .xr-section-summary-in:checked ~ .xr-section-details {
   display: contents;
+}
+
+.xr-group-box {
+  display: inline-grid;
+  grid-template-columns: 0px 20px auto;
+  width: 100%;
+}
+
+.xr-group-box-vline {
+  grid-column-start: 1;
+  border-right: 0.2em solid;
+  border-color: var(--xr-border-color);
+  width: 0px;
+}
+
+.xr-group-box-hline {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  height: 1em;
+  width: 20px;
+  border-bottom: 0.2em solid;
+  border-color: var(--xr-border-color);
+}
+
+.xr-group-box-contents {
+  grid-column-start: 3;
 }
 
 .xr-array-wrap {
@@ -445,11 +480,11 @@ dl.xr-attrs {
 Dimensions:                         (time: 120, nlat: 384, nlon: 320, z_t: 60,
                                      z_t_150m: 15)
 Coordinates:
-    TLAT                            (nlat, nlon) float64 983kB dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;
-    TLONG                           (nlat, nlon) float64 983kB dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;
   * time                            (time) object 960B 2010-01-16 12:00:00 .....
   * z_t                             (z_t) float32 240B 500.0 ... 5.375e+05
   * z_t_150m                        (z_t_150m) float32 60B 500.0 ... 1.45e+04
+    TLAT                            (nlat, nlon) float64 983kB dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;
+    TLONG                           (nlat, nlon) float64 983kB dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;
 Dimensions without coordinates: nlat, nlon
 Data variables: (12/45)
     FG_CO2                          (time, nlat, nlon) float32 59MB dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;
@@ -464,117 +499,7 @@ Data variables: (12/45)
     sp_N_lim_Cweight_avg_100m       (time, nlat, nlon) float32 59MB dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;
     sp_N_lim_surf                   (time, nlat, nlon) float32 59MB dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;
     sp_P_lim_Cweight_avg_100m       (time, nlat, nlon) float32 59MB dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;
-    sp_P_lim_surf                   (time, nlat, nlon) float32 59MB dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-a373f852-ec85-401f-bc80-2e11762ed4b3' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-a373f852-ec85-401f-bc80-2e11762ed4b3' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 120</li><li><span>nlat</span>: 384</li><li><span>nlon</span>: 320</li><li><span class='xr-has-index'>z_t</span>: 60</li><li><span class='xr-has-index'>z_t_150m</span>: 15</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-8d3cb31b-09d5-4d63-9ca6-952883e651d0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8d3cb31b-09d5-4d63-9ca6-952883e651d0' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>TLAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-0ad77389-beb3-44ef-bf4f-c3ad3b994b6e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0ad77389-beb3-44ef-bf4f-c3ad3b994b6e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4ae40b82-7bca-4d66-be03-0ba72c3bc0d2' class='xr-var-data-in' type='checkbox'><label for='data-4ae40b82-7bca-4d66-be03-0ba72c3bc0d2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid latitudes</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
-    <tr>
-        <td>
-            <table style="border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <td> </td>
-                        <th> Array </th>
-                        <th> Chunk </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <th> Bytes </th>
-                        <td> 0.94 MiB </td>
-                        <td> 0.94 MiB </td>
-                    </tr>
-                    
-                    <tr>
-                        <th> Shape </th>
-                        <td> (384, 320) </td>
-                        <td> (384, 320) </td>
-                    </tr>
-                    <tr>
-                        <th> Dask graph </th>
-                        <td colspan="2"> 1 chunks in 2 graph layers </td>
-                    </tr>
-                    <tr>
-                        <th> Data type </th>
-                        <td colspan="2"> float64 numpy.ndarray </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-        <td>
-        <svg width="150" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
-
-  <!-- Horizontal lines -->
-  <line x1="0" y1="0" x2="100" y2="0" style="stroke-width:2" />
-  <line x1="0" y1="120" x2="100" y2="120" style="stroke-width:2" />
-
-  <!-- Vertical lines -->
-  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
-  <line x1="100" y1="0" x2="100" y2="120" style="stroke-width:2" />
-
-  <!-- Colored Rectangle -->
-  <polygon points="0.0,0.0 100.0,0.0 100.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
-
-  <!-- Text -->
-  <text x="50.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >320</text>
-  <text x="120.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,120.000000,60.000000)">384</text>
-</svg>
-        </td>
-    </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-1a9eb0d3-9c7d-4dde-8396-960c47f40f16' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1a9eb0d3-9c7d-4dde-8396-960c47f40f16' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d810be5b-9688-474d-86c4-f252e1302425' class='xr-var-data-in' type='checkbox'><label for='data-d810be5b-9688-474d-86c4-f252e1302425' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid longitudes</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
-    <tr>
-        <td>
-            <table style="border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <td> </td>
-                        <th> Array </th>
-                        <th> Chunk </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <th> Bytes </th>
-                        <td> 0.94 MiB </td>
-                        <td> 0.94 MiB </td>
-                    </tr>
-                    
-                    <tr>
-                        <th> Shape </th>
-                        <td> (384, 320) </td>
-                        <td> (384, 320) </td>
-                    </tr>
-                    <tr>
-                        <th> Dask graph </th>
-                        <td colspan="2"> 1 chunks in 2 graph layers </td>
-                    </tr>
-                    <tr>
-                        <th> Data type </th>
-                        <td colspan="2"> float64 numpy.ndarray </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-        <td>
-        <svg width="150" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
-
-  <!-- Horizontal lines -->
-  <line x1="0" y1="0" x2="100" y2="0" style="stroke-width:2" />
-  <line x1="0" y1="120" x2="100" y2="120" style="stroke-width:2" />
-
-  <!-- Vertical lines -->
-  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
-  <line x1="100" y1="0" x2="100" y2="120" style="stroke-width:2" />
-
-  <!-- Colored Rectangle -->
-  <polygon points="0.0,0.0 100.0,0.0 100.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
-
-  <!-- Text -->
-  <text x="50.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >320</text>
-  <text x="120.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,120.000000,60.000000)">384</text>
-</svg>
-        </td>
-    </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>2010-01-16 12:00:00 ... 2019-12-...</div><input id='attrs-2aa18558-fb42-4ce6-83fc-4f4a16a4b8e8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-2aa18558-fb42-4ce6-83fc-4f4a16a4b8e8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-002896bb-539d-4ab4-986a-22ca69809f79' class='xr-var-data-in' type='checkbox'><label for='data-002896bb-539d-4ab4-986a-22ca69809f79' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([cftime.DatetimeNoLeap(2010, 1, 16, 12, 0, 0, 0, has_year_zero=True),
+    sp_P_lim_surf                   (time, nlat, nlon) float32 59MB dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-9cb79e7d-8ce0-47fa-918f-a5c0a2b65032' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-9cb79e7d-8ce0-47fa-918f-a5c0a2b65032' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 120</li><li><span>nlat</span>: 384</li><li><span>nlon</span>: 320</li><li><span class='xr-has-index'>z_t</span>: 60</li><li><span class='xr-has-index'>z_t_150m</span>: 15</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-d7fd15a7-27f1-4c95-8d40-24726059d536' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d7fd15a7-27f1-4c95-8d40-24726059d536' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>object</div><div class='xr-var-preview xr-preview'>2010-01-16 12:00:00 ... 2019-12-...</div><input id='attrs-971ae291-d3db-416d-bac2-4dc0275e9846' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-971ae291-d3db-416d-bac2-4dc0275e9846' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-592ec6ba-1394-4629-8414-0a25eb43f925' class='xr-var-data-in' type='checkbox'><label for='data-592ec6ba-1394-4629-8414-0a25eb43f925' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([cftime.DatetimeNoLeap(2010, 1, 16, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2010, 2, 15, 0, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2010, 3, 16, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2010, 4, 16, 0, 0, 0, 0, has_year_zero=True),
@@ -694,7 +619,7 @@ Data variables: (12/45)
        cftime.DatetimeNoLeap(2019, 10, 16, 12, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2019, 11, 16, 0, 0, 0, 0, has_year_zero=True),
        cftime.DatetimeNoLeap(2019, 12, 16, 12, 0, 0, 0, has_year_zero=True)],
-      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 5.375e+05</div><input id='attrs-b6d55b5d-2d69-4f87-8856-510dd5616872' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b6d55b5d-2d69-4f87-8856-510dd5616872' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-12c3490d-c4c8-452a-bd7d-d882c1d99144' class='xr-var-data-in' type='checkbox'><label for='data-12c3490d-c4c8-452a-bd7d-d882c1d99144' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>537500.0</dd></dl></div><div class='xr-var-data'><pre>array([5.000000e+02, 1.500000e+03, 2.500000e+03, 3.500000e+03, 4.500000e+03,
+      dtype=object)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t</span></div><div class='xr-var-dims'>(z_t)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 5.375e+05</div><input id='attrs-c4d273ba-d72f-4a2b-a14e-a8d5af6fd0ac' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c4d273ba-d72f-4a2b-a14e-a8d5af6fd0ac' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-076942f4-aeb0-4cb4-8264-14f2c28734c2' class='xr-var-data-in' type='checkbox'><label for='data-076942f4-aeb0-4cb4-8264-14f2c28734c2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>537500.0</dd></dl></div><div class='xr-var-data'><pre>array([5.000000e+02, 1.500000e+03, 2.500000e+03, 3.500000e+03, 4.500000e+03,
        5.500000e+03, 6.500000e+03, 7.500000e+03, 8.500000e+03, 9.500000e+03,
        1.050000e+04, 1.150000e+04, 1.250000e+04, 1.350000e+04, 1.450000e+04,
        1.550000e+04, 1.650984e+04, 1.754790e+04, 1.862913e+04, 1.976603e+04,
@@ -706,8 +631,118 @@ Data variables: (12/45)
        1.968944e+05, 2.186457e+05, 2.413972e+05, 2.649001e+05, 2.889385e+05,
        3.133405e+05, 3.379793e+05, 3.627670e+05, 3.876452e+05, 4.125768e+05,
        4.375392e+05, 4.625190e+05, 4.875083e+05, 5.125028e+05, 5.375000e+05],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t_150m</span></div><div class='xr-var-dims'>(z_t_150m)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 1.35e+04 1.45e+04</div><input id='attrs-6960659f-ffbb-4bde-9f2b-80d5de4e43f4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6960659f-ffbb-4bde-9f2b-80d5de4e43f4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f2ccda93-7c96-4949-956d-0c49e4680670' class='xr-var-data-in' type='checkbox'><label for='data-f2ccda93-7c96-4949-956d-0c49e4680670' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>14500.0</dd></dl></div><div class='xr-var-data'><pre>array([  500.,  1500.,  2500.,  3500.,  4500.,  5500.,  6500.,  7500.,  8500.,
-        9500., 10500., 11500., 12500., 13500., 14500.], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-974a32e4-58a0-4937-bf79-19449b8eeee7' class='xr-section-summary-in' type='checkbox'  ><label for='section-974a32e4-58a0-4937-bf79-19449b8eeee7' class='xr-section-summary' >Data variables: <span>(45)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>FG_CO2</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-0d254f68-8209-4bcf-b4c1-943c0b5608f8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0d254f68-8209-4bcf-b4c1-943c0b5608f8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0b110efd-e624-4781-b0d7-31901c062fea' class='xr-var-data-in' type='checkbox'><label for='data-0b110efd-e624-4781-b0d7-31901c062fea' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>DIC Surface Gas Flux</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>z_t_150m</span></div><div class='xr-var-dims'>(z_t_150m)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>500.0 1.5e+03 ... 1.35e+04 1.45e+04</div><input id='attrs-4bcc1bf9-e0c0-4597-a4c8-616136db89b4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4bcc1bf9-e0c0-4597-a4c8-616136db89b4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1938c9cf-74f8-4218-84d1-0875e2d6eebb' class='xr-var-data-in' type='checkbox'><label for='data-1938c9cf-74f8-4218-84d1-0875e2d6eebb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>depth from surface to midpoint of layer</dd><dt><span>units :</span></dt><dd>centimeters</dd><dt><span>positive :</span></dt><dd>down</dd><dt><span>valid_min :</span></dt><dd>500.0</dd><dt><span>valid_max :</span></dt><dd>14500.0</dd></dl></div><div class='xr-var-data'><pre>array([  500.,  1500.,  2500.,  3500.,  4500.,  5500.,  6500.,  7500.,  8500.,
+        9500., 10500., 11500., 12500., 13500., 14500.], dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLAT</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-61609889-88c6-459f-83be-264ca2fa6d7e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-61609889-88c6-459f-83be-264ca2fa6d7e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-782a62c1-bd5b-454e-9987-291f0e664b93' class='xr-var-data-in' type='checkbox'><label for='data-782a62c1-bd5b-454e-9987-291f0e664b93' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid latitudes</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 0.94 MiB </td>
+                        <td> 0.94 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (384, 320) </td>
+                        <td> (384, 320) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="150" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="100" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="120" x2="100" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="100" y1="0" x2="100" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 100.0,0.0 100.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="50.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >320</text>
+  <text x="120.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,120.000000,60.000000)">384</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TLONG</span></div><div class='xr-var-dims'>(nlat, nlon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(384, 320), meta=np.ndarray&gt;</div><input id='attrs-01f0f7bb-6870-4a76-abc4-51155a30e3e7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-01f0f7bb-6870-4a76-abc4-51155a30e3e7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-821a7ccf-d86e-40b5-a50b-cffabc8435a0' class='xr-var-data-in' type='checkbox'><label for='data-821a7ccf-d86e-40b5-a50b-cffabc8435a0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>array of t-grid longitudes</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 0.94 MiB </td>
+                        <td> 0.94 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (384, 320) </td>
+                        <td> (384, 320) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float64 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="150" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="100" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="120" x2="100" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="100" y1="0" x2="100" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 100.0,0.0 100.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="50.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >320</text>
+  <text x="120.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,120.000000,60.000000)">384</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-ea9f1366-20bd-49a1-b3d4-e9cc1abfc485' class='xr-section-summary-in' type='checkbox'  ><label for='section-ea9f1366-20bd-49a1-b3d4-e9cc1abfc485' class='xr-section-summary' >Data variables: <span>(45)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>FG_CO2</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-7e867d68-490d-4682-acba-92815bbf5cc5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7e867d68-490d-4682-acba-92815bbf5cc5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0a95c104-abec-40c2-99be-1209b458f9d0' class='xr-var-data-in' type='checkbox'><label for='data-0a95c104-abec-40c2-99be-1209b458f9d0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>DIC Surface Gas Flux</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -791,7 +826,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>Fe</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-213733a2-4c9c-4c48-884d-0946e7ea9276' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-213733a2-4c9c-4c48-884d-0946e7ea9276' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0892cf6c-06f1-47da-9338-3a68db2d42f3' class='xr-var-data-in' type='checkbox'><label for='data-0892cf6c-06f1-47da-9338-3a68db2d42f3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Iron</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>Fe</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-d4ba00fb-6daa-4cb5-b05f-0aa50a82213c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d4ba00fb-6daa-4cb5-b05f-0aa50a82213c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-47e738d2-2973-4f4c-ad85-2dacad7328ee' class='xr-var-data-in' type='checkbox'><label for='data-47e738d2-2973-4f4c-ad85-2dacad7328ee' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Iron</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -906,7 +941,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>NO3</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-670b937e-e21b-49d4-967d-0027876b29eb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-670b937e-e21b-49d4-967d-0027876b29eb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3cea1e63-1aee-46c2-96ac-6fefaf6c383b' class='xr-var-data-in' type='checkbox'><label for='data-3cea1e63-1aee-46c2-96ac-6fefaf6c383b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Nitrate</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>NO3</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-26172410-3f62-40e8-a5ef-65e8b889059e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-26172410-3f62-40e8-a5ef-65e8b889059e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-576c8ccc-ecbd-43c9-a311-4c7772c9e5fa' class='xr-var-data-in' type='checkbox'><label for='data-576c8ccc-ecbd-43c9-a311-4c7772c9e5fa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Nitrate</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1021,7 +1056,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>PO4</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-e3f20681-9ed1-4bc9-924b-c25a6715907e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e3f20681-9ed1-4bc9-924b-c25a6715907e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b1ac025a-af59-4b7b-833d-682f0900c574' class='xr-var-data-in' type='checkbox'><label for='data-b1ac025a-af59-4b7b-833d-682f0900c574' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Phosphate</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>PO4</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-dc102806-7d65-47ea-b525-be29bb33c8ea' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dc102806-7d65-47ea-b525-be29bb33c8ea' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2534f75b-8e89-4563-b43f-0ee10296060e' class='xr-var-data-in' type='checkbox'><label for='data-2534f75b-8e89-4563-b43f-0ee10296060e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Phosphate</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1136,7 +1171,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>POC_FLUX_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-f67f3301-4c00-4c19-9075-e9622e73c484' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f67f3301-4c00-4c19-9075-e9622e73c484' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7db1f4fc-9d5c-42ce-8346-c06c22515d45' class='xr-var-data-in' type='checkbox'><label for='data-7db1f4fc-9d5c-42ce-8346-c06c22515d45' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>POC Flux at 100m</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>POC_FLUX_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-2c87a544-504b-42a3-9e18-aa6d4df80220' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2c87a544-504b-42a3-9e18-aa6d4df80220' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-782597d4-764a-4c5b-b20b-880d83d24ade' class='xr-var-data-in' type='checkbox'><label for='data-782597d4-764a-4c5b-b20b-880d83d24ade' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>POC Flux at 100m</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1220,7 +1255,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SALT</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-cf761108-bb8a-43ae-a2fa-aecc7e80c334' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cf761108-bb8a-43ae-a2fa-aecc7e80c334' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-41188a31-e085-4a7f-9cc1-b51146d27c5d' class='xr-var-data-in' type='checkbox'><label for='data-41188a31-e085-4a7f-9cc1-b51146d27c5d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Salinity</dd><dt><span>units :</span></dt><dd>gram/kilogram</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SALT</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-fadf2010-a47f-48fe-8693-1d04e0e8c007' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fadf2010-a47f-48fe-8693-1d04e0e8c007' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ea8aca5d-54e2-4138-8e9f-cda3e9ddb426' class='xr-var-data-in' type='checkbox'><label for='data-ea8aca5d-54e2-4138-8e9f-cda3e9ddb426' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Salinity</dd><dt><span>units :</span></dt><dd>gram/kilogram</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1335,7 +1370,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SiO3</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-ec34cddb-d51c-4889-87a4-9dec82ef1631' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ec34cddb-d51c-4889-87a4-9dec82ef1631' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5a39bdd0-a481-4b92-abf8-aa81846de31a' class='xr-var-data-in' type='checkbox'><label for='data-5a39bdd0-a481-4b92-abf8-aa81846de31a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Silicate</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>SiO3</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-924b1095-760a-472f-8ba2-317da5c811d7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-924b1095-760a-472f-8ba2-317da5c811d7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1108764b-08d2-4f9c-bbbf-dd3624e46458' class='xr-var-data-in' type='checkbox'><label for='data-1108764b-08d2-4f9c-bbbf-dd3624e46458' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Dissolved Inorganic Silicate</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1450,7 +1485,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TEMP</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-c22d3b16-6f25-4e30-a66b-8424eedbda61' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c22d3b16-6f25-4e30-a66b-8424eedbda61' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-88b8a2c6-e8b8-475e-b303-056d6c6a3a53' class='xr-var-data-in' type='checkbox'><label for='data-88b8a2c6-e8b8-475e-b303-056d6c6a3a53' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Potential Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>TEMP</span></div><div class='xr-var-dims'>(time, z_t, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(30, 15, 96, 80), meta=np.ndarray&gt;</div><input id='attrs-cf957eb2-09cf-4765-a7f9-b20705623ed7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cf957eb2-09cf-4765-a7f9-b20705623ed7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-754ea33b-39da-44c2-84df-ebde60244413' class='xr-var-data-in' type='checkbox'><label for='data-754ea33b-39da-44c2-84df-ebde60244413' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Potential Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>grid_loc :</span></dt><dd>3111</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1565,7 +1600,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>coccoC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-a3bef49f-c91e-4de5-8c89-304d24850c6c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a3bef49f-c91e-4de5-8c89-304d24850c6c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b1f96c8f-af9a-4fb7-9631-5020e7443dce' class='xr-var-data-in' type='checkbox'><label for='data-b1f96c8f-af9a-4fb7-9631-5020e7443dce' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>coccoC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-6f86ab83-07b5-4378-a9ee-1f76ca5158a9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6f86ab83-07b5-4378-a9ee-1f76ca5158a9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a6dbe480-c924-46f5-b166-3f1c300a78ae' class='xr-var-data-in' type='checkbox'><label for='data-a6dbe480-c924-46f5-b166-3f1c300a78ae' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1673,7 +1708,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_C_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-7a2027f4-03dd-4813-9279-1eabc558b08a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7a2027f4-03dd-4813-9279-1eabc558b08a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-466ad2f0-2a4c-4d39-bb13-1944c6286829' class='xr-var-data-in' type='checkbox'><label for='data-466ad2f0-2a4c-4d39-bb13-1944c6286829' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores C Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_C_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-a9c13df7-5675-4bb2-80e8-cafb8c1386e0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a9c13df7-5675-4bb2-80e8-cafb8c1386e0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c4db3051-f5f8-469e-8a4d-44e7aee9ad19' class='xr-var-data-in' type='checkbox'><label for='data-c4db3051-f5f8-469e-8a4d-44e7aee9ad19' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores C Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1757,7 +1792,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_C_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-53de46b8-f413-40b3-82b0-95beb750369b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-53de46b8-f413-40b3-82b0-95beb750369b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7c5de691-f868-4bd9-aae1-aafa3866307f' class='xr-var-data-in' type='checkbox'><label for='data-7c5de691-f868-4bd9-aae1-aafa3866307f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores C Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_C_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-70d1c1f0-3e17-473f-80e2-1e0c725f272d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-70d1c1f0-3e17-473f-80e2-1e0c725f272d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-63c151e3-5d42-4a6d-8a90-a9085c96168a' class='xr-var-data-in' type='checkbox'><label for='data-63c151e3-5d42-4a6d-8a90-a9085c96168a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores C Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1841,7 +1876,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-665d9c5a-1a20-44b4-affb-fbc223452862' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-665d9c5a-1a20-44b4-affb-fbc223452862' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-46256823-d983-4576-a344-92393d5db743' class='xr-var-data-in' type='checkbox'><label for='data-46256823-d983-4576-a344-92393d5db743' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-5cd0e8ff-3b24-4fac-9714-b1ebe545418a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5cd0e8ff-3b24-4fac-9714-b1ebe545418a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7de3da4a-7814-458c-ac88-609ec594dbed' class='xr-var-data-in' type='checkbox'><label for='data-7de3da4a-7814-458c-ac88-609ec594dbed' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -1925,7 +1960,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-c7a62944-1a7a-418e-8a9c-6a5e7bbaaaad' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c7a62944-1a7a-418e-8a9c-6a5e7bbaaaad' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-41635ec3-dcdd-42f4-a370-259cd4929ea4' class='xr-var-data-in' type='checkbox'><label for='data-41635ec3-dcdd-42f4-a370-259cd4929ea4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-d91173df-cd16-40d7-afe7-76a5ff6ba111' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d91173df-cd16-40d7-afe7-76a5ff6ba111' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-220b6101-ec2c-431b-8693-93ce51ca35c6' class='xr-var-data-in' type='checkbox'><label for='data-220b6101-ec2c-431b-8693-93ce51ca35c6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2009,7 +2044,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_N_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-0bb1dff3-2857-4c7a-8f63-41fab2e385fb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0bb1dff3-2857-4c7a-8f63-41fab2e385fb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-95e52442-b90c-436c-9410-1f9bc39c85b6' class='xr-var-data-in' type='checkbox'><label for='data-95e52442-b90c-436c-9410-1f9bc39c85b6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores N Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_N_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-176a7c1a-d405-4472-a6e3-30c81af79287' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-176a7c1a-d405-4472-a6e3-30c81af79287' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-91fd7fc6-b35d-4800-8193-8f866a6eda05' class='xr-var-data-in' type='checkbox'><label for='data-91fd7fc6-b35d-4800-8193-8f866a6eda05' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores N Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2093,7 +2128,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_N_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-1058f0c7-ba6d-448d-81f6-1c3c3b836807' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1058f0c7-ba6d-448d-81f6-1c3c3b836807' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e6fc7d10-3098-4e17-9412-8d4010d130f9' class='xr-var-data-in' type='checkbox'><label for='data-e6fc7d10-3098-4e17-9412-8d4010d130f9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores N Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_N_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-4cc22a2c-57fa-40f9-9574-ec7388e75e48' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4cc22a2c-57fa-40f9-9574-ec7388e75e48' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c89a4b13-d745-4001-a2ef-8fae1bb7e8b9' class='xr-var-data-in' type='checkbox'><label for='data-c89a4b13-d745-4001-a2ef-8fae1bb7e8b9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores N Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2177,7 +2212,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-50977ee2-12c9-4e53-a97e-dd7b36aa79fd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-50977ee2-12c9-4e53-a97e-dd7b36aa79fd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c3e3251e-19d2-4403-a1bc-7f32295a4cf5' class='xr-var-data-in' type='checkbox'><label for='data-c3e3251e-19d2-4403-a1bc-7f32295a4cf5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-2f062ee3-c551-4429-9dee-686789fcc205' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2f062ee3-c551-4429-9dee-686789fcc205' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b5b9260e-159a-4945-a6fc-285da71a943a' class='xr-var-data-in' type='checkbox'><label for='data-b5b9260e-159a-4945-a6fc-285da71a943a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2261,7 +2296,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-ffae169c-d29d-4810-bf5e-317e475dc618' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ffae169c-d29d-4810-bf5e-317e475dc618' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7b654dd0-a6d8-4e70-92f4-7ce4f9ba253a' class='xr-var-data-in' type='checkbox'><label for='data-7b654dd0-a6d8-4e70-92f4-7ce4f9ba253a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>cocco_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-ca5f3847-e790-46ff-b4e7-f8fce06ba735' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ca5f3847-e790-46ff-b4e7-f8fce06ba735' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0b0e0969-fb00-43b7-8448-0aa0a9f31115' class='xr-var-data-in' type='checkbox'><label for='data-0b0e0969-fb00-43b7-8448-0aa0a9f31115' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2345,7 +2380,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diatC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-1df3a958-e612-458b-8d57-845f4badc1f6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1df3a958-e612-458b-8d57-845f4badc1f6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5b7354e5-3f54-4917-b4a4-48b56c686228' class='xr-var-data-in' type='checkbox'><label for='data-5b7354e5-3f54-4917-b4a4-48b56c686228' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diatC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-b2abd265-a5f2-43ea-9f78-79622fa3cf1d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b2abd265-a5f2-43ea-9f78-79622fa3cf1d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-db28e595-8c08-4029-87ff-65670a5d401e' class='xr-var-data-in' type='checkbox'><label for='data-db28e595-8c08-4029-87ff-65670a5d401e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2453,7 +2488,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-4c6c1c46-8f67-4beb-aa08-3aad750c6b5f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4c6c1c46-8f67-4beb-aa08-3aad750c6b5f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8e9d0766-8372-4396-9cdc-62db0c299d49' class='xr-var-data-in' type='checkbox'><label for='data-8e9d0766-8372-4396-9cdc-62db0c299d49' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-35e73f07-c893-4435-9679-389ad1073893' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-35e73f07-c893-4435-9679-389ad1073893' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f8c92157-ae59-45cd-88ae-8a8d6be020fc' class='xr-var-data-in' type='checkbox'><label for='data-f8c92157-ae59-45cd-88ae-8a8d6be020fc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2537,7 +2572,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-c141c0d9-96fa-49db-bb97-9f63bba4329a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c141c0d9-96fa-49db-bb97-9f63bba4329a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c2030e45-05da-4c50-b246-19b6292127d0' class='xr-var-data-in' type='checkbox'><label for='data-c2030e45-05da-4c50-b246-19b6292127d0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-aece7a5e-1ee6-4b3c-8519-0ea2b527eae6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aece7a5e-1ee6-4b3c-8519-0ea2b527eae6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bd016d0b-aa08-4f74-bd81-88cc2a98a709' class='xr-var-data-in' type='checkbox'><label for='data-bd016d0b-aa08-4f74-bd81-88cc2a98a709' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2621,7 +2656,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_N_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-7a2a9498-8146-4d5f-9c29-c66c9d729989' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7a2a9498-8146-4d5f-9c29-c66c9d729989' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ec50e755-867a-4b95-b781-c60d0d7ebfc9' class='xr-var-data-in' type='checkbox'><label for='data-ec50e755-867a-4b95-b781-c60d0d7ebfc9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom N Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_N_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-8c7b934a-c5d1-4f22-9b7e-ede682046225' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8c7b934a-c5d1-4f22-9b7e-ede682046225' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9828bdd9-9a7e-45db-afa6-97bc9e0373fb' class='xr-var-data-in' type='checkbox'><label for='data-9828bdd9-9a7e-45db-afa6-97bc9e0373fb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom N Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2705,7 +2740,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_N_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-34d0fe27-53de-498e-b813-8b55e657a3b7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-34d0fe27-53de-498e-b813-8b55e657a3b7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-81ef7d8f-4ad0-4f48-82de-8354df6c43eb' class='xr-var-data-in' type='checkbox'><label for='data-81ef7d8f-4ad0-4f48-82de-8354df6c43eb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom N Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_N_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-8e0b13f5-7e8e-4e88-92a9-9b4f8809322b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8e0b13f5-7e8e-4e88-92a9-9b4f8809322b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5edec3a2-29b5-4de0-ba44-aa192647065d' class='xr-var-data-in' type='checkbox'><label for='data-5edec3a2-29b5-4de0-ba44-aa192647065d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom N Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2789,7 +2824,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-46d4445a-8537-495f-8453-5db100c24345' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-46d4445a-8537-495f-8453-5db100c24345' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fdf743f6-10d5-4871-b1c4-17f48e2c7856' class='xr-var-data-in' type='checkbox'><label for='data-fdf743f6-10d5-4871-b1c4-17f48e2c7856' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-4d47d5c4-b53b-4020-b5eb-ba037642b1de' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4d47d5c4-b53b-4020-b5eb-ba037642b1de' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6b648b00-bfb3-4ae5-a177-128563229837' class='xr-var-data-in' type='checkbox'><label for='data-6b648b00-bfb3-4ae5-a177-128563229837' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2873,7 +2908,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-b5ef2f37-7334-46eb-9b99-a8b7b74ff3a2' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b5ef2f37-7334-46eb-9b99-a8b7b74ff3a2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6c54fb12-9ef6-4564-ae5b-b664f8c8d8ce' class='xr-var-data-in' type='checkbox'><label for='data-6c54fb12-9ef6-4564-ae5b-b664f8c8d8ce' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-a24a902f-6313-44be-b789-a437b4b10b72' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a24a902f-6313-44be-b789-a437b4b10b72' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6b7f60c9-721f-4141-a36a-06c2c48959d1' class='xr-var-data-in' type='checkbox'><label for='data-6b7f60c9-721f-4141-a36a-06c2c48959d1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -2957,7 +2992,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_SiO3_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-6ff8f504-e8a3-44e2-a917-bd9393a63796' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6ff8f504-e8a3-44e2-a917-bd9393a63796' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-97a5636a-e207-4045-9042-028aefde78ea' class='xr-var-data-in' type='checkbox'><label for='data-97a5636a-e207-4045-9042-028aefde78ea' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom SiO3 Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_SiO3_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-b55ee65b-6802-4be9-879a-6aeb253f5e21' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b55ee65b-6802-4be9-879a-6aeb253f5e21' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bb9ed093-b154-4adf-9777-b1af49ac8cff' class='xr-var-data-in' type='checkbox'><label for='data-bb9ed093-b154-4adf-9777-b1af49ac8cff' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom SiO3 Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3041,7 +3076,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_SiO3_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-a59e394e-947e-493d-8623-15d0093a7063' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a59e394e-947e-493d-8623-15d0093a7063' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9e430487-8ece-47e3-92d5-e8ecaadc530d' class='xr-var-data-in' type='checkbox'><label for='data-9e430487-8ece-47e3-92d5-e8ecaadc530d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom SiO3 Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diat_SiO3_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-448a8e2e-a81a-40fd-992a-e16a9cb7e549' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-448a8e2e-a81a-40fd-992a-e16a9cb7e549' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3359e7b4-901e-4117-b815-ed7a7735978d' class='xr-var-data-in' type='checkbox'><label for='data-3359e7b4-901e-4117-b815-ed7a7735978d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom SiO3 Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3125,7 +3160,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diazC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-5269043b-69b5-4f6c-9369-ff18eb72adcc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5269043b-69b5-4f6c-9369-ff18eb72adcc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ced0b974-0930-44d0-a480-dca43a07e369' class='xr-var-data-in' type='checkbox'><label for='data-ced0b974-0930-44d0-a480-dca43a07e369' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diazC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-bb5a24c9-f35c-4c2c-b7f4-241364a4e861' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-bb5a24c9-f35c-4c2c-b7f4-241364a4e861' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9e3c67f8-8f47-44de-9f31-02bcf2014dfe' class='xr-var-data-in' type='checkbox'><label for='data-9e3c67f8-8f47-44de-9f31-02bcf2014dfe' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3233,7 +3268,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-aa054f41-9658-4a55-b830-060ce558d510' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aa054f41-9658-4a55-b830-060ce558d510' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a231cf99-31ab-4e45-bb0f-b4838dd29936' class='xr-var-data-in' type='checkbox'><label for='data-a231cf99-31ab-4e45-bb0f-b4838dd29936' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-de9b06e4-23ee-4125-af20-c8c9a99bba16' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-de9b06e4-23ee-4125-af20-c8c9a99bba16' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-59a2fcec-2e02-4259-8a5a-1aa140760096' class='xr-var-data-in' type='checkbox'><label for='data-59a2fcec-2e02-4259-8a5a-1aa140760096' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3317,7 +3352,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-fac548c2-6be2-4396-afd2-f009767d5755' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fac548c2-6be2-4396-afd2-f009767d5755' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-01640b8e-2ab9-4999-943a-6a11d760e5e5' class='xr-var-data-in' type='checkbox'><label for='data-01640b8e-2ab9-4999-943a-6a11d760e5e5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-6bcaefcc-bf73-4d05-b7b3-b761a9ac49e5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6bcaefcc-bf73-4d05-b7b3-b761a9ac49e5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c1b42f5f-1aa0-46d4-beef-2a42b383d85b' class='xr-var-data-in' type='checkbox'><label for='data-c1b42f5f-1aa0-46d4-beef-2a42b383d85b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3401,7 +3436,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-a1aab353-1fbc-46eb-928c-686cb266a049' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a1aab353-1fbc-46eb-928c-686cb266a049' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-bee1d869-6159-48bd-ad24-c8ae5c45ff69' class='xr-var-data-in' type='checkbox'><label for='data-bee1d869-6159-48bd-ad24-c8ae5c45ff69' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-3eaa630e-ba93-465f-a978-06624f5d1a62' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3eaa630e-ba93-465f-a978-06624f5d1a62' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d0d51cb0-817c-4bc4-92fd-e330decbac36' class='xr-var-data-in' type='checkbox'><label for='data-d0d51cb0-817c-4bc4-92fd-e330decbac36' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3485,7 +3520,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-e5185b00-6b70-4fd1-9c45-62cb3ec7d9ff' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e5185b00-6b70-4fd1-9c45-62cb3ec7d9ff' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-175240c3-d200-41c7-9517-f07e75500c5a' class='xr-var-data-in' type='checkbox'><label for='data-175240c3-d200-41c7-9517-f07e75500c5a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>diaz_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-ff2805a3-3046-49f5-8da8-e1255ee88a62' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ff2805a3-3046-49f5-8da8-e1255ee88a62' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8c2ea41f-28fc-4469-bec4-4c78721c844f' class='xr-var-data-in' type='checkbox'><label for='data-8c2ea41f-28fc-4469-bec4-4c78721c844f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3569,7 +3604,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mesozooC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-ccec4c0b-c244-4b1a-80f3-8bd9c13d5bfa' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ccec4c0b-c244-4b1a-80f3-8bd9c13d5bfa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ad4228f3-0eea-4ca7-bfed-e6ee5abba2c8' class='xr-var-data-in' type='checkbox'><label for='data-ad4228f3-0eea-4ca7-bfed-e6ee5abba2c8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Mesozooplankton Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>mesozooC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-ff4400e1-c2ee-41a7-a8fd-d31993130516' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-ff4400e1-c2ee-41a7-a8fd-d31993130516' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-77197dfd-5712-414d-9984-0fd30c987dc4' class='xr-var-data-in' type='checkbox'><label for='data-77197dfd-5712-414d-9984-0fd30c987dc4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Mesozooplankton Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3677,7 +3712,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>microzooC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-8310ac0b-e82e-4715-8a5e-7fb4810a7182' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8310ac0b-e82e-4715-8a5e-7fb4810a7182' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8147a05d-035f-4b26-bdd0-8d7a345fffc8' class='xr-var-data-in' type='checkbox'><label for='data-8147a05d-035f-4b26-bdd0-8d7a345fffc8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Microzooplankton Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>microzooC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-422e0596-750b-4a76-aa96-7b75c7e6c49a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-422e0596-750b-4a76-aa96-7b75c7e6c49a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-53619559-31af-49d6-9e0e-eaf86a6b29c2' class='xr-var-data-in' type='checkbox'><label for='data-53619559-31af-49d6-9e0e-eaf86a6b29c2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Microzooplankton Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3785,7 +3820,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_TOT_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(120, 384, 320), meta=np.ndarray&gt;</div><input id='attrs-6ad5d703-1408-4714-a029-a78a61652bcb' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6ad5d703-1408-4714-a029-a78a61652bcb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-11bc2270-607c-4b26-9eee-4616e55fac76' class='xr-var-data-in' type='checkbox'><label for='data-11bc2270-607c-4b26-9eee-4616e55fac76' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Total C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_TOT_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(120, 384, 320), meta=np.ndarray&gt;</div><input id='attrs-7d2eaff1-ae1b-4227-a0e5-89c535a9e114' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7d2eaff1-ae1b-4227-a0e5-89c535a9e114' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8bdb52c8-1a99-4cdf-95c0-2e4a672b543a' class='xr-var-data-in' type='checkbox'><label for='data-8bdb52c8-1a99-4cdf-95c0-2e4a672b543a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Total C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3863,7 +3898,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_cocco_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-d9887a78-39b4-4c8f-bec9-9a5ea2c58a83' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d9887a78-39b4-4c8f-bec9-9a5ea2c58a83' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-30c81fce-22c0-47e5-8edf-ce0d470bb9ec' class='xr-var-data-in' type='checkbox'><label for='data-30c81fce-22c0-47e5-8edf-ce0d470bb9ec' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_cocco_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-2b56b29f-77aa-4b81-936e-0f19b633e355' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2b56b29f-77aa-4b81-936e-0f19b633e355' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f50c8070-38c8-4149-bc74-d4b3afcf2ce6' class='xr-var-data-in' type='checkbox'><label for='data-f50c8070-38c8-4149-bc74-d4b3afcf2ce6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Coccolithophores C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -3947,7 +3982,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_diat_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-d15c495b-44a8-44b1-939e-1b638487be5f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d15c495b-44a8-44b1-939e-1b638487be5f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-91bb3e44-64ea-40cc-b518-78c680d0b69b' class='xr-var-data-in' type='checkbox'><label for='data-91bb3e44-64ea-40cc-b518-78c680d0b69b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_diat_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-2821bf1e-5883-44ae-8cbf-43037cffb568' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2821bf1e-5883-44ae-8cbf-43037cffb568' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6618d489-0081-4fb5-8ce9-93fb72636207' class='xr-var-data-in' type='checkbox'><label for='data-6618d489-0081-4fb5-8ce9-93fb72636207' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diatom C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4031,7 +4066,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_diaz_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-1c728f87-a8c3-4ed3-89f7-3a04db60f247' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1c728f87-a8c3-4ed3-89f7-3a04db60f247' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0520af4b-ee76-4c97-866a-4cbce914c7b6' class='xr-var-data-in' type='checkbox'><label for='data-0520af4b-ee76-4c97-866a-4cbce914c7b6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_diaz_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-467be58d-d10d-4b2f-a255-ab892fe9310e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-467be58d-d10d-4b2f-a255-ab892fe9310e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2109bf6e-744f-4744-bc99-bad2e2261f8c' class='xr-var-data-in' type='checkbox'><label for='data-2109bf6e-744f-4744-bc99-bad2e2261f8c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Diazotroph C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4115,7 +4150,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_sp_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-5069936a-dacc-4839-81b1-1c0ceae19bde' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5069936a-dacc-4839-81b1-1c0ceae19bde' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-319ae1a3-4697-447b-9c70-cd451177d912' class='xr-var-data-in' type='checkbox'><label for='data-319ae1a3-4697-447b-9c70-cd451177d912' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>photoC_sp_zint</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-1a2185a6-edff-41fe-afb1-08109990e144' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1a2185a6-edff-41fe-afb1-08109990e144' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1b6ffa12-b0eb-48a5-a97e-c0d5b5736945' class='xr-var-data-in' type='checkbox'><label for='data-1b6ffa12-b0eb-48a5-a97e-c0d5b5736945' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto C Fixation Vertical Integral</dd><dt><span>units :</span></dt><dd>mmol/m^3 cm/s</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4199,7 +4234,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-eacd3a84-bf33-42d4-af5c-c0ca698fc073' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-eacd3a84-bf33-42d4-af5c-c0ca698fc073' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cd111eb9-3fa3-4dcf-aaaa-3504cc911ca2' class='xr-var-data-in' type='checkbox'><label for='data-cd111eb9-3fa3-4dcf-aaaa-3504cc911ca2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>spC</span></div><div class='xr-var-dims'>(time, z_t_150m, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(40, 5, 128, 107), meta=np.ndarray&gt;</div><input id='attrs-f88d78e7-a450-408d-8424-04dd48e26042' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f88d78e7-a450-408d-8424-04dd48e26042' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-45f09a69-91ac-4df9-b242-154d7defe9ce' class='xr-var-data-in' type='checkbox'><label for='data-45f09a69-91ac-4df9-b242-154d7defe9ce' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto Carbon</dd><dt><span>units :</span></dt><dd>mmol/m^3</dd><dt><span>grid_loc :</span></dt><dd>3114</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4307,7 +4342,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-00c8812c-20f0-485b-9851-ad73073cb7e3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-00c8812c-20f0-485b-9851-ad73073cb7e3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f9671ecc-58ad-443d-a9ee-11d429645da1' class='xr-var-data-in' type='checkbox'><label for='data-f9671ecc-58ad-443d-a9ee-11d429645da1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_Fe_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-fe2ca596-d6ad-402e-9e46-9e84eb501dc6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fe2ca596-d6ad-402e-9e46-9e84eb501dc6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4d17a18d-8aec-4a8e-83b2-cdd21db7d421' class='xr-var-data-in' type='checkbox'><label for='data-4d17a18d-8aec-4a8e-83b2-cdd21db7d421' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto Fe Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4391,7 +4426,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-a080ce43-226e-4db8-ab87-942efb229227' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a080ce43-226e-4db8-ab87-942efb229227' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7b988413-79af-4844-8149-21b4c9857658' class='xr-var-data-in' type='checkbox'><label for='data-7b988413-79af-4844-8149-21b4c9857658' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_Fe_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-81105a82-47d8-4525-8fb8-0876873156cf' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-81105a82-47d8-4525-8fb8-0876873156cf' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4fda35f2-d55e-435f-994f-5adccb57bada' class='xr-var-data-in' type='checkbox'><label for='data-4fda35f2-d55e-435f-994f-5adccb57bada' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto Fe Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4475,7 +4510,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_N_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-8e25dcb0-2e15-4734-b120-6cf57affbaaa' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8e25dcb0-2e15-4734-b120-6cf57affbaaa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-528d18bb-abcc-42c0-9c75-a6f7ffa4d218' class='xr-var-data-in' type='checkbox'><label for='data-528d18bb-abcc-42c0-9c75-a6f7ffa4d218' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto N Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_N_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-f066f1f8-64f5-4d1c-8d56-0c922bd486c6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f066f1f8-64f5-4d1c-8d56-0c922bd486c6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-16bbf7da-a78a-4777-ba84-640ee2fd66b8' class='xr-var-data-in' type='checkbox'><label for='data-16bbf7da-a78a-4777-ba84-640ee2fd66b8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto N Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4559,7 +4594,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_N_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-4d002628-d5f9-4b74-88d1-a7c46f498488' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4d002628-d5f9-4b74-88d1-a7c46f498488' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-684c2b84-cc4a-4251-b4ef-d094ea4641b6' class='xr-var-data-in' type='checkbox'><label for='data-684c2b84-cc4a-4251-b4ef-d094ea4641b6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto N Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_N_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-41e71e71-d169-4fc2-ac84-f24558f7a315' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-41e71e71-d169-4fc2-ac84-f24558f7a315' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-88e42b94-699b-4b76-9ca5-326723af6246' class='xr-var-data-in' type='checkbox'><label for='data-88e42b94-699b-4b76-9ca5-326723af6246' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto N Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4643,7 +4678,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-3afd977d-6ba9-4d23-9256-bb55160da230' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3afd977d-6ba9-4d23-9256-bb55160da230' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-85a1499f-d013-4400-be34-f60e007d91e4' class='xr-var-data-in' type='checkbox'><label for='data-85a1499f-d013-4400-be34-f60e007d91e4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_P_lim_Cweight_avg_100m</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-a3e8e52a-b1a6-4def-bb23-8f54631a4842' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a3e8e52a-b1a6-4def-bb23-8f54631a4842' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-afb798dd-4d4b-455e-9115-991649db4311' class='xr-var-data-in' type='checkbox'><label for='data-afb798dd-4d4b-455e-9115-991649db4311' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto P Limitation, carbon biomass weighted average over 0-100m</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4727,7 +4762,7 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-208a46d2-cf37-428a-92f7-750a7f9d2ff4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-208a46d2-cf37-428a-92f7-750a7f9d2ff4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-814b1f15-a443-4edd-9351-19cdb0ce3a6c' class='xr-var-data-in' type='checkbox'><label for='data-814b1f15-a443-4edd-9351-19cdb0ce3a6c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li><li class='xr-var-item'><div class='xr-var-name'><span>sp_P_lim_surf</span></div><div class='xr-var-dims'>(time, nlat, nlon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(60, 192, 160), meta=np.ndarray&gt;</div><input id='attrs-c0621b06-cda8-4a79-9eff-5b6041f0a54e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c0621b06-cda8-4a79-9eff-5b6041f0a54e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c8c147fc-127b-4674-895e-658d58cf48e9' class='xr-var-data-in' type='checkbox'><label for='data-c8c147fc-127b-4674-895e-658d58cf48e9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Small Phyto P Limitation, Surface</dd><dt><span>units :</span></dt><dd>1</dd><dt><span>grid_loc :</span></dt><dd>2110</dd><dt><span>cell_methods :</span></dt><dd>time: mean</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -4811,30 +4846,4 @@ Data variables: (12/45)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-adfe2cc6-bb18-4e51-9ae1-88226618dae1' class='xr-section-summary-in' type='checkbox'  ><label for='section-adfe2cc6-bb18-4e51-9ae1-88226618dae1' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-8d977f02-ab98-444d-9a77-fab0811fc6f4' class='xr-index-data-in' type='checkbox'/><label for='index-8d977f02-ab98-444d-9a77-fab0811fc6f4' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(CFTimeIndex([2010-01-16 12:00:00, 2010-02-15 00:00:00, 2010-03-16 12:00:00,
-             2010-04-16 00:00:00, 2010-05-16 12:00:00, 2010-06-16 00:00:00,
-             2010-07-16 12:00:00, 2010-08-16 12:00:00, 2010-09-16 00:00:00,
-             2010-10-16 12:00:00,
-             ...
-             2019-03-16 12:00:00, 2019-04-16 00:00:00, 2019-05-16 12:00:00,
-             2019-06-16 00:00:00, 2019-07-16 12:00:00, 2019-08-16 12:00:00,
-             2019-09-16 00:00:00, 2019-10-16 12:00:00, 2019-11-16 00:00:00,
-             2019-12-16 12:00:00],
-            dtype=&#x27;object&#x27;, length=120, calendar=&#x27;noleap&#x27;, freq=None))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_t</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-e494251f-9ffc-4d67-b442-a2fae5542a95' class='xr-index-data-in' type='checkbox'/><label for='index-e494251f-9ffc-4d67-b442-a2fae5542a95' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([          500.0,          1500.0,          2500.0,          3500.0,
-                4500.0,          5500.0,          6500.0,          7500.0,
-                8500.0,          9500.0,         10500.0,         11500.0,
-               12500.0,         13500.0,         14500.0,         15500.0,
-        16509.83984375, 17547.904296875, 18629.126953125,  19766.02734375,
-       20971.138671875,    22257.828125,   23640.8828125,    25137.015625,
-       26765.419921875, 28548.365234375,    30511.921875, 32686.798828125,
-        35109.34765625,  37822.76171875,  40878.46484375,  44337.76953125,
-          48273.671875,  52772.80078125,   57937.2890625,  63886.26171875,
-          70756.328125,        78700.25,   87882.5234375,   98470.5859375,
-         110620.421875,     124456.6875,    140049.71875,   157394.640625,
-         176400.328125,   196894.421875,    218645.65625,    241397.15625,
-            264900.125,    288938.46875,    313340.46875,    337979.34375,
-          362767.03125,     387645.1875,     412576.8125,       437539.25,
-          462519.03125,    487508.34375,     512502.8125,        537500.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;z_t&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>z_t_150m</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-576b98b4-831e-40a5-9282-f3af73456ca5' class='xr-index-data-in' type='checkbox'/><label for='index-576b98b4-831e-40a5-9282-f3af73456ca5' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  500.0,  1500.0,  2500.0,  3500.0,  4500.0,  5500.0,  6500.0,  7500.0,
-        8500.0,  9500.0, 10500.0, 11500.0, 12500.0, 13500.0, 14500.0],
-      dtype=&#x27;float32&#x27;, name=&#x27;z_t_150m&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ab563b71-5845-44ec-ab30-52e5cc8cc115' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ab563b71-5845-44ec-ab30-52e5cc8cc115' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div>
+</table></div></li></ul></div></li></ul></div></div>
