@@ -1,0 +1,1 @@
+import{a as e,b as r}from"/ocean-bgc-cookbook/build/_shared/chunk-IMEQYZY3.js";import"/ocean-bgc-cookbook/build/_shared/chunk-GEZIJWLJ.js";import"/ocean-bgc-cookbook/build/_shared/chunk-RAQ24GF6.js";export{e as PacketModule,r as createPacketServices};

@@ -1,0 +1,1 @@
+import{a as r,b as e}from"/ocean-bgc-cookbook/build/_shared/chunk-AATLEN4A.js";import"/ocean-bgc-cookbook/build/_shared/chunk-GEZIJWLJ.js";import"/ocean-bgc-cookbook/build/_shared/chunk-RAQ24GF6.js";export{r as RadarModule,e as createRadarServices};

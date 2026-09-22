@@ -1,1 +1,0 @@
-import{a}from"/ocean-bgc-cookbook/build/_shared/chunk-JDDPODAA.js";import"/ocean-bgc-cookbook/build/_shared/chunk-I232HDZP.js";import"/ocean-bgc-cookbook/build/_shared/chunk-OZE3FFNP.js";export default a();
